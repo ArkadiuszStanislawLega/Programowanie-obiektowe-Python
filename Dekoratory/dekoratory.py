@@ -1,29 +1,32 @@
 from functools import wraps
 import datetime
 
-log = []
+meesages_list = []
 
 
-def my_decorator(func):
+def add_message_to_list(func):
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def add_message(message: str):
         time = datetime.datetime.now()
-        for i in args:
-            log.append(f'{time.strftime("%d-%m-%Y %X")} - {i}')
-        return func(*args, **kwargs)
-    return wrapper
+        add_message.counter += 1
+        meesages_list.append(f'{time.strftime("%d-%m-%Y %X")} - {message}')
+        print(f'Użyto dekorator {add_message.counter} raz')
+        return func(message)
+
+    add_message.counter = 0
+    return add_message
 
 
-@my_decorator
-def message(message):
-    print(log[-1::][0])
+@add_message_to_list
+def message(message: str):
+    print(meesages_list[-1::][0])
 
 
 def main():
-    message("First message.")
-    message("Second messaage.")
-    message("Third message.")
-    print(f'Ilość wpisów w logu: {len(log)}')
+    message("Pierwsza wiadomość.")
+    message("Druga wiadomość.")
+    message("Trzecia wiadomość.")
+    print(f'Ilość wpisów w logu: {len(meesages_list)}')
 
 
 if __name__ == '__main__':
