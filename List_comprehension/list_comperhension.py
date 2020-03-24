@@ -24,8 +24,13 @@ def is_prime(n):
 
 
 def main():
-    lista = list(range(20))
-    print([liczba**2 for liczba in lista if is_prime(liczba)])
+    numbers_list = list(range(20))
+    # list comperhension
+    print(
+        f'List comperhension: {[number**2 for number in numbers_list if is_prime(number)]}')
+
+    print(
+        f'Filter and map: {list(map(lambda arg: arg**2,  filter(is_prime, numbers_list)))}')
 
 
 if __name__ == "__main__":
