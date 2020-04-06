@@ -1,0 +1,6 @@
+You are using pip version 10.0.1, however version 20.0.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+irement already satisfied: setuptools in ./venv/lib/python3.6/site-packages (from pypandoc~=1.3.0) (39.0.1)
+Requirement already satisfied: pip>=8.1.0 in ./venv/lib/python3.6/site-packages (from pypandoc~=1.3.0) (10.0.1)
+Installing collected packages: pypandoc
+Successfully installed pypandoc-1.3.3

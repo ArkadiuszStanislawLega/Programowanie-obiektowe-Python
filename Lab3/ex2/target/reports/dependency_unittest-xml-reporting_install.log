@@ -1,0 +1,5 @@
+You are using pip version 10.0.1, however version 20.0.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+9cb27ce80/unittest_xml_reporting-3.0.2-py2.py3-none-any.whl
+Installing collected packages: unittest-xml-reporting
+Successfully installed unittest-xml-reporting-3.0.2

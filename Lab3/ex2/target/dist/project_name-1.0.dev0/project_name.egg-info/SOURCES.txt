@@ -1,0 +1,11 @@
+main.py
+setup.py
+lab1/__init__.py
+lab1/hello.py
+project_name.egg-info/PKG-INFO
+project_name.egg-info/SOURCES.txt
+project_name.egg-info/dependency_links.txt
+project_name.egg-info/namespace_packages.txt
+project_name.egg-info/requires.txt
+project_name.egg-info/top_level.txt
+project_name.egg-info/zip-safe
