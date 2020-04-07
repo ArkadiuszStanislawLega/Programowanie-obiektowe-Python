@@ -18,6 +18,7 @@ class FibonacciIterator():
     def __init__(self, max_val):
         self.__a = 0
         self.__b = 1
+        self.__counter_to_2 = 0
         self.__max_val = max_val
 
     def __iter__(self):
@@ -25,8 +26,12 @@ class FibonacciIterator():
 
     def __next__(self):
         printing()
-        self.__b = self.__a + self.__b
-        self.__a = self.__b - self.__a
+        if self.__counter_to_2 >= 0 and self.__counter_to_2 < 2:
+            self.__counter_to_2 += 1
+            return self.__counter_to_2 - 1
+        else:
+            self.__b = self.__a + self.__b
+            self.__a = self.__b - self.__a
 
         if self.__b >= self.__max_val:
             print("Koniec")
@@ -35,7 +40,7 @@ class FibonacciIterator():
 
 
 def main():
-    fib = FibonacciIterator(100)
+    fib = FibonacciIterator(200000000)
     it = iter(fib)
     for f in it:
         print(f)
