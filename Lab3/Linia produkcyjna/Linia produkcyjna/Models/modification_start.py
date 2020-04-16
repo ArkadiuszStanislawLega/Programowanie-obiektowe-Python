@@ -3,7 +3,7 @@ from Models.rotate90 import Rotate90
 from Models.rotate180 import Rotate180
 from Models.blur import Blur
 from Models.modification_end import ModificationEnd
-from cv2 import imread, imwrite, rotate, ROTATE_180
+from cv2 import imread
 
 
 class ModificationStart(Modification):
@@ -16,8 +16,8 @@ class ModificationStart(Modification):
         blur = Blur()
         modification_end = ModificationEnd()
 
-        modification_end.action(blur.action(rot180.action(
-            rot90.action(self.action(self.PICTURE_PATH)))))
+        modification_end.action(rot90.action(blur.action(
+            rot180.action(self.action(self.PICTURE_PATH)))))
 
     def action(self, img):
         print("Rozpoczynam obróbkę.")

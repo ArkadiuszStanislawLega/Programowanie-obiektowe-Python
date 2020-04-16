@@ -6,4 +6,4 @@ class Blur(Modification):
     def action(self, img):
         if img is not None:
             print("Dodaje rozmycie.")
-            return blur(img, (5, 5))
+            return blur(img, (20, 40))
