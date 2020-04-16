@@ -1,2 +1,0 @@
-class Modification:
-    pass
