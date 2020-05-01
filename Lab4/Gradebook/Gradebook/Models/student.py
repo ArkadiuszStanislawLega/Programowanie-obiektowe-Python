@@ -1,4 +1,5 @@
 from Models.grade_type import GradeType
+from Models.grade import Grade
 
 
 class Student:
@@ -6,7 +7,7 @@ class Student:
         self.__id = 0
         self.__name = ""
         self.__surname = ""
-        self.__grades = []
+        self.__grades = {}
 
     @property
     def name(self):
@@ -41,8 +42,8 @@ class Student:
         sum_counter = 0
         number_of_grades = len(self.__grades)
         if number_of_grades > 0:
-            for grade in self.__grades:
-                sum_counter += grade.value
+            for grade in self.__grades.values():
+                sum_counter += grade.grade.value
             return sum_counter/number_of_grades
         else:
             return sum_counter
@@ -53,9 +54,11 @@ class Student:
     def __repr__(self):
         return f'{self.__name} {self.__surname}'
 
-    def add_grade(self, rating: GradeType):
-        if isinstance(rating, GradeType):
-            self.__grades.append(rating)
+    def add_grade(self, rating: Grade):
+        if isinstance(rating, Grade):
+            if rating.id is not self.__grades.keys():
+                self.__grades[rating.id] = rating
 
     def print_grades(self):
-        print(f'Oceny {self.full_name}: {self.__grades}')
+        for grade in self.__grades.values():
+            print(f'{grade}')

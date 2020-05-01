@@ -54,6 +54,10 @@ class GradeLog:
         else:
             return 0
 
+    def exibit_a_grade_to_the_student(self, student_id: int, grade: GradeType):
+        if isinstance(student_id, int) and isinstance(grade, GradeType):
+            self.__students.get(student_id).add_grade(grade)
+
     @property
     def students(self):
         return self.__students

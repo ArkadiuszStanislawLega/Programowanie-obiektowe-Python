@@ -2,6 +2,8 @@ from Models.gradeLog import GradeLog
 from Models.student import Student
 from Models.grade_type import GradeType
 from Models.action_type import ActionType
+from Models.grade import Grade
+import datetime
 import os
 
 
@@ -19,16 +21,121 @@ class School:
                               ActionType.add_student: "Dodaj ucznia",
                               ActionType.remove_student: "Usuń ucznia",
                               ActionType.print_students_list:  "Lista uczni",
-                              ActionType.edit_student: "Edytuj ucznia"}
+                              ActionType.edit_student: "Edytuj ucznia",
+                              ActionType.issuing_grades: "Oceny"}
 
         self.__actions = {ActionType.exit: self.__exit,
                           ActionType.add_student: self.__add_new_student,
                           ActionType.remove_student: self.__remove_student,
                           ActionType.print_students_list:  self.__print_students,
-                          ActionType.edit_student: self.__edit_student}
+                          ActionType.edit_student: self.__edit_student,
+                          ActionType.issuing_grades: self.__issuing_grades}
 
         self.__clear()
         self.__run()
+
+    def __issuing_grades(self):
+        """
+        Wyowułuje interfejs użytkownika umożliwający wstawienie ocen uczniowi
+        """
+        try:
+            # Flaga wskazująca czy pętla edycji użytkownika się zakończyła.
+            is_exit = False
+            # Wartości które wyświetlają się w menu - informacje o tym co można edytować.
+            menu_values = ["Wyjdź do menu", "Dodaj", "Edytuj", "Usuń"]
+            # region Wyświetlanie nagłówka i listy uczniów
+            print("Dziennik - wstawianie ocen:")
+            self.__highlighting_the_stage()
+            self.__print_students()
+            # endregion
+            if len(self.__log.students) > 0:
+                user_input = int(input("Podaj numer identyfikacyjny ucznia: "))
+                student = self.__log.students.get(user_input)
+
+                self.__clear()
+
+                while not is_exit:
+                    # region Wyświetlanie informacji
+                    self.__highlighting_the_stage()
+                    print("Dziennik - wstawianie ocen:")
+                    print(f'Edytujesz oceny ucznia: {student}')
+                    student.print_grades()
+                    self.__highlighting_the_stage()
+
+                    for i, value in enumerate(menu_values):
+                        print(f'{i}. {value}')
+                    # endregion
+                    edit_value = int(
+                        input("Podaj numer z listy, wartości które chcesz wykonać: "))
+                    # region Warunki
+                    if edit_value == 0:
+                        is_exit = True
+                    elif edit_value == 1:
+                        self.__add_grade_to_specific_student(student)
+                    elif edit_value == 2:
+                        self.__edit_grade_of_specific_student(student)
+                    elif edit_value == 3:
+                        self.__remove_grade_of_specific_student(student)
+                    # endregion
+
+                    self.__clear()
+                    print("Wartości zostały zmienione.")
+
+        except (ValueError):
+            self.__clear()
+            self.__print_warning()
+
+    def __add_grade_to_specific_student(self, student: Student):
+        """
+        Dodaje nową ocenę uczniowi.
+        """
+        self.__clear()
+        try:
+            print("Dziennik - wstaw ocenę:")
+            print(f'Wstawiasz ocenę uczniowi: {student}')
+            self.__highlighting_the_stage()
+
+            grades = ["Anuluj",
+                      GradeType.ndst,
+                      GradeType.dop,
+                      GradeType.dst,
+                      GradeType.db,
+                      GradeType.bdb
+                      ]
+
+            for i, value in enumerate(grades):
+                print(f'{i}. {value}')
+
+            user_select = int(input("Ocena która chcesz wstawić: "))
+            if user_select > 0:
+                grade_date = datetime.datetime.now()
+                grade_id = f'{student.id}-{grade_date}'
+
+                grade_to_add = GradeType(user_select)
+                grade_name = input("Nazwa oceny: ")
+
+                new_grade = Grade()
+                new_grade.id = grade_id
+                new_grade.name = grade_name
+                new_grade.grade = grade_to_add
+                new_grade.date = grade_date
+
+                student.add_grade(new_grade)
+
+                self.__clear()
+                print("Nowa ocena została dodana.")
+            else:
+                print("Wybrano anulowanie.")
+
+        except (ValueError):
+            self.__clear()
+            self.__print_warning()
+
+    def __edit_grade_of_specific_student(self, student: Student):
+        pass
+
+    def __remove_grade_of_specific_student(self, student: Student):
+        pass
 
     def __print_warning(self):
         """
