@@ -58,10 +58,14 @@ class Student:
     def __repr__(self):
         return f'{self.__name} {self.__surname}'
 
-    def add_grade(self, rating: Grade):
-        if isinstance(rating, Grade):
-            if rating.id is not self.__grades.keys():
-                self.__grades[rating.id] = rating
+    def add_grade(self, grade: Grade):
+        if isinstance(grade, Grade):
+            if grade.id is not self.__grades.keys():
+                self.__grades[grade.id] = grade
+
+    def remove_grade(self, grade: Grade):
+        if isinstance(grade, Grade):
+            self.__grades.pop(grade.id)
 
     def print_grades(self):
         for grade in self.__grades.values():

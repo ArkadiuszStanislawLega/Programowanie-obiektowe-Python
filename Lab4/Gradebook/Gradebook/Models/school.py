@@ -135,6 +135,7 @@ class School:
         """
         Wyowułuje interfejs użytkownika umożliwający zmianę oceny ucznia.
         """
+        self.__clear()
         try:
             print("Dziennik - edytuj ocenę ucznia:")
             self.__highlighting_the_stage()
@@ -182,7 +183,49 @@ class School:
             self.__print_warning()
 
     def __remove_grade_of_specific_student(self, student: Student):
-        pass
+        """
+        Wyowułuje interfejs użytkownika umożliwający usunięcie oceny ucznia.
+        """
+        self.__clear()
+        try:
+            print("Dziennik - usuń ocenę ucznia:")
+            self.__highlighting_the_stage()
+
+            keys = []
+
+            if len(student.grades) > 0:
+                for i, grade in enumerate(student.grades.values()):
+                    print(f'{i}. {grade}')
+                    keys.append(grade.id)
+
+                user_input = int(input("Podaj numer identyfikacyjny oceny: "))
+
+                selected_grade = student.grades.get(keys[user_input])
+
+                self.__clear()
+
+                self.__highlighting_the_stage()
+                print("Dziennik - usuń ocenę:")
+                print(f'Edytujesz dane ucznia: {student}')
+                print(f'Usuwasz ocenę: {selected_grade}')
+                self.__highlighting_the_stage()
+
+                print("0. Nie")
+                print("1. Tak")
+
+                user_answer = int(
+                    input("Czy jesteś pewien że chcesz usunąć ocenę?"))
+
+                if user_answer == 1:
+                    student.remove_grade(selected_grade)
+                    print("Ocena została usunięta.")
+
+            else:
+                print("Uczeń nie posiada ocen.")
+
+        except (ValueError):
+            self.__clear()
+            self.__print_warning()
 
     def __print_warning(self):
         """
