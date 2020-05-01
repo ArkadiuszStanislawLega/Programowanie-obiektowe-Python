@@ -28,10 +28,14 @@ class Component(ABC):
 
     def __str__(self):
         value = ""
+        current_price = 0
+        counter = 1
         if len(self._elements) > 0:
             for element in self._elements:
-                value += f'{element._id} - {element._producent_name} - {element._name} cena: {element._price}\n'
-            value += f'{self._id} {self._name} - {self.price}'
+                value += f'{counter}. {element}\n'
+                current_price += element.price
+                counter += 1
+            value += f'{type(self).__name__} - cena: {current_price}zł'
             return value
 
         return f'{self._id} {self._name} - {self.price}'
