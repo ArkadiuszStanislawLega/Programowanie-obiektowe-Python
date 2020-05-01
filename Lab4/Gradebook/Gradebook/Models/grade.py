@@ -1,18 +1,7 @@
-from enum import Enum
+from Models.grade_type import GradeType
 
 
-class Grade(Enum):
-    """
-    Model ocen które można przydzielić uczniom.
-    Arguments:
-        Enum {[type]} -- Oceny uczni o bardzo dobrej do niedostatecznej w skali od 1 do 5
-    """
-    bdb = 5
-    # dobry
-    db = 4
-    # dostateczny
-    dst = 3
-    # dopuszczający
-    dop = 2
-    # niedostateczny
-    ndst = 1
+class Grade:
+    def __init__(self):
+        self.__id = 0
+        self.__grade = GradeType.ndst

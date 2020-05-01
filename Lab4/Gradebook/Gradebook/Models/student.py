@@ -1,4 +1,4 @@
-from .grade import Grade
+from Models.grade_type import GradeType
 
 
 class Student:
@@ -53,8 +53,8 @@ class Student:
     def __repr__(self):
         return f'{self.__name} {self.__surname}'
 
-    def add_grade(self, rating: Grade):
-        if isinstance(rating, Grade):
+    def add_grade(self, rating: GradeType):
+        if isinstance(rating, GradeType):
             self.__grades.append(rating)
 
     def print_grades(self):

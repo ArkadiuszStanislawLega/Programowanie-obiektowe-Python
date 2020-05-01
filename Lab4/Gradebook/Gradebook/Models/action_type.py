@@ -13,4 +13,7 @@ class ActionType(Enum):
     remove_student = 2
     # Drukowanie wszystkich uczniów w konsoli
     print_students_list = 3
-    # niedostateczny
+    # Edytowanie ucznia
+    edit_student = 4
+    # Wstawianie ocen
+    issuing_grades = 5

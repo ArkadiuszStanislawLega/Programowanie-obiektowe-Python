@@ -1,11 +1,11 @@
-from .student import Student
-from .grade import Grade
+from Models.student import Student
+from Models.grade_type import GradeType
 
 
 class GradeLog:
 
     def __init__(self):
-        self.__students = []
+        self.__students = {}
 
     def add_student(self, student: Student):
         """
@@ -16,10 +16,25 @@ class GradeLog:
         if isinstance(student, Student):
             if student.id not in self.__students:
                 print(f'Dodaję nowego ucznia: {student.full_name}')
-                self.__students.append(student)
+                self.__students[student.id] = student
             else:
                 print(
                     f'Istnieje już student z numerem identyfikacyjnym {student.id} w dzienniku.')
+
+    def remove_student(self, id: int):
+        """
+        Usuwa ucznia z dziennika o podanym w argumencie numerze id.
+
+        Arguments:
+            id {int} -- Numer ucznia id do usunięcia.
+        """
+        if isinstance(id, int) and id > 0:
+            print(f'Usuwam ucznia z dziennika: {self.__students.get(id)}')
+            self.__students.pop(id)
+
+    def print_students_list(self):
+        for student in self.__students.values():
+            print(f'{student.id}. {student}')
 
     def get_last_id(self):
         """
@@ -31,9 +46,9 @@ class GradeLog:
         """
         if len(self.__students) > 0:
             greatest_value = 0
-            for student in self.__students:
-                if student.id > greatest_value:
-                    greatest_value = student.id
+            for id in self.__students.keys():
+                if id > greatest_value:
+                    greatest_value = id
 
             return greatest_value
         else:
