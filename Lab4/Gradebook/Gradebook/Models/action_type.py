@@ -17,3 +17,5 @@ class ActionType(Enum):
     edit_student = 4
     # Wstawianie ocen
     issuing_grades = 5
+    # Wyświetlanie średnich ocen
+    average_grades = 6

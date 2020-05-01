@@ -58,6 +58,13 @@ class GradeLog:
         if isinstance(student_id, int) and isinstance(grade, GradeType):
             self.__students.get(student_id).add_grade(grade)
 
+    def average_grades(self):
+        """
+        Drukuje do konsoli średnie ocen wszystkich uczni.
+        """
+        for student in self.__students.values():
+            print(f'{student.id}. {student} {student.average_grade}')
+
     @property
     def students(self):
         return self.__students

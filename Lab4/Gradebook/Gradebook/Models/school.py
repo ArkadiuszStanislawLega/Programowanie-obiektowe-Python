@@ -22,17 +22,28 @@ class School:
                               ActionType.remove_student: "Usuń ucznia",
                               ActionType.print_students_list:  "Lista uczni",
                               ActionType.edit_student: "Edytuj ucznia",
-                              ActionType.issuing_grades: "Oceny"}
+                              ActionType.issuing_grades: "Oceny",
+                              ActionType.average_grades: "Średnie ocen"}
 
         self.__actions = {ActionType.exit: self.__exit,
                           ActionType.add_student: self.__add_new_student,
                           ActionType.remove_student: self.__remove_student,
                           ActionType.print_students_list:  self.__print_students,
                           ActionType.edit_student: self.__edit_student,
-                          ActionType.issuing_grades: self.__issuing_grades}
+                          ActionType.issuing_grades: self.__issuing_grades,
+                          ActionType.average_grades: self.__average_grades}
 
         self.__clear()
         self.__run()
+
+    def __average_grades(self):
+        """
+        Wywołuje interfejs związany z wyświetlaniem średnich ocen.
+        """
+        self.__clear()
+        print("Dziennik - średnie ocen wszystkich uczniów:")
+        self.__highlighting_the_stage()
+        self.__log.average_grades()
 
     def __issuing_grades(self):
         """
@@ -250,7 +261,8 @@ class School:
         Wywołuje interfejs umożliwiający dodanie użytkownika.
         """
         self.__clear()
-        print("Ddodaj nowego ucznia do dziennika.")
+        print("Dziennik - Dodawanie nowego ucznia")
+        self.__highlighting_the_stage()
         new_student_name = input("Imię ucznia: ")
         new_student_surname = input("Nazwisko ucznia: ")
 
