@@ -3,6 +3,7 @@ from models.graphic_card import GraphicCard
 from models.keyboard import Keyboard
 from models.monitor import Monitor
 from models.motherboard import Motherboard
+from models.mouse import Mouse
 
 
 def main():
@@ -12,6 +13,7 @@ def main():
     pc.add_element(GraphicCard())
     pc.add_element(Keyboard())
     pc.add_element(Monitor())
+    pc.add_element(Mouse())
 
     print(pc)
 
