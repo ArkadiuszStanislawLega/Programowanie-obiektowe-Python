@@ -106,7 +106,7 @@ class School:
             for i, value in enumerate(grades):
                 print(f'{i}. {value}')
 
-            user_select = int(input("Ocena która chcesz wstawić: "))
+            user_select = int(input("Ocena którą chcesz wstawić: "))
             if user_select > 0:
                 grade_date = datetime.datetime.now()
                 grade_id = f'{student.id}-{grade_date}'
@@ -125,14 +125,61 @@ class School:
                 self.__clear()
                 print("Nowa ocena została dodana.")
             else:
-                print("Wybrano anulowanie.")
+                print("Wybrano anulowanie dodawanie oceny.")
 
         except (ValueError):
             self.__clear()
             self.__print_warning()
 
     def __edit_grade_of_specific_student(self, student: Student):
-        pass
+        """
+        Wyowułuje interfejs użytkownika umożliwający zmianę oceny ucznia.
+        """
+        try:
+            print("Dziennik - edytuj ocenę ucznia:")
+            self.__highlighting_the_stage()
+
+            keys = []
+
+            if len(student.grades) > 0:
+                for i, grade in enumerate(student.grades.values()):
+                    print(f'{i}. {grade}')
+                    keys.append(grade.id)
+
+                user_input = int(input("Podaj numer identyfikacyjny oceny: "))
+
+                selected_grade = student.grades.get(keys[user_input])
+
+                self.__clear()
+
+                self.__highlighting_the_stage()
+                print("Dziennik - edytuj ocenę:")
+                print(f'Edytujesz dane ucznia: {student}')
+                print(f'Edytujesz ocenę: {selected_grade}')
+                self.__highlighting_the_stage()
+
+                grades = ["Anuluj",
+                          GradeType.ndst,
+                          GradeType.dop,
+                          GradeType.dst,
+                          GradeType.db,
+                          GradeType.bdb
+                          ]
+
+                for i, value in enumerate(grades):
+                    print(f'{i}. {value}')
+
+                user_select = int(input("Ocena którą chcesz wstawić: "))
+                if user_select > 0:
+                    selected_grade.grade = GradeType(user_select)
+                    print("Ocena została zmieniona.")
+
+            else:
+                print("Uczeń nie posiada ocen.")
+
+        except (ValueError):
+            self.__clear()
+            self.__print_warning()
 
     def __remove_grade_of_specific_student(self, student: Student):
         pass

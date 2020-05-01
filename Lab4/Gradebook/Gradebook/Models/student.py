@@ -38,6 +38,10 @@ class Student:
         return f'{self.__name} {self.__surname}'
 
     @property
+    def grades(self):
+        return self.__grades
+
+    @property
     def average_grade(self):
         sum_counter = 0
         number_of_grades = len(self.__grades)
