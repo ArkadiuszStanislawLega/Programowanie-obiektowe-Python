@@ -7,5 +7,6 @@ class GradeNameController(Controller):
 
     def get_user_input(self):
         user_input = input(
-            'Podaj nową nazwę oceny: \n')
+            'Podaj nową nazwę oceny: ')
+        print(80*"=")
         self._model.modify({"name": user_input})

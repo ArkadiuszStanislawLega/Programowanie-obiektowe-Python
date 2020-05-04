@@ -19,9 +19,11 @@ class GradeGradeController(Controller):
             print(f'{i}. {value}')
 
         try:
-            user_select = int(input("Ocena którą chcesz wstawić: "))
 
+            user_select = int(input("Ocena którą chcesz wstawić: "))
+            print(80*"=")
             if user_select > 0:
                 self._model.modify({"grade": GradeType(user_select)})
+
         except(ValueError):
             print("Błędna wartość.")

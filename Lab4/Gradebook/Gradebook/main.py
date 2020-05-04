@@ -21,10 +21,13 @@ def main():
     view.show()
 
     grade_controller.update_name()
-    grade_controller.update_grade()
-    grade_controller.update_date()
+    print(80*"=")
 
-    view.show()
+    grade_controller.update_grade()
+    print(80*"=")
+
+    grade_controller.update_date()
+    print(80*"=")
 
 
 if __name__ == "__main__":

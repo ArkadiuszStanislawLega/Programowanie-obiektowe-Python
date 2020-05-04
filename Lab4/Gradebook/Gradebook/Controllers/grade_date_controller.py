@@ -8,11 +8,13 @@ class GradeDateController(Controller):
 
     def get_user_input(self):
         obj = input(
-            'Żeby zaktualizować datę wciśnij "T". Żeby anulować wciśnij "N". \n')
+            'Żeby zaktualizować datę wciśnij "T". Żeby anulować wciśnij "N". ')
+        print(80*"=")
         if obj == 'n':
             return False
         elif obj == 't':
             self._model.modify({"date": datetime.datetime.now()})
         else:
             print("Błędna wartość.")
+
         return True
