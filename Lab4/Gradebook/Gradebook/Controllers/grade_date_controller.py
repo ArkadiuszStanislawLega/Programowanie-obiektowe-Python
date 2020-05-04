@@ -4,7 +4,7 @@ import datetime
 
 class GradeDateController(Controller):
     def __init__(self, view, model):
-        super().__init__(view, model)
+        super().__init__(view=view, model=model)
 
     def get_user_input(self):
         obj = input(
@@ -12,7 +12,7 @@ class GradeDateController(Controller):
         if obj == 'n':
             return False
         elif obj == 't':
-            self.model.update({"date": datetime.datetime.now()})
+            self._model.modify({"date": datetime.datetime.now()})
         else:
-            print('Incorrect value')
+            print("Błędna wartość.")
         return True

@@ -52,21 +52,21 @@ class Grade(BasicModel):
         return f'{self.__id}. {self.__name} - {self.__grade}'
 
     def modify(self, *args, **kwargs):
-        for key, value in kwargs.items():
-            if key == "id":
-                self.__id = value
+        if len(args) > 0:
+            for item in args:
 
-            elif key == "name":
-                self.__name = value
+                if item.get("name"):
+                    self.__name = item["name"]
+                    self.notify(kwargs=item)
 
-            elif key == "grade":
-                self.__grade = value
+                elif item.get("grade"):
+                    self.__grade = item["grade"]
+                    self.notify(kwargs=item)
 
-            elif key == "date":
-                self.__date = value
+                elif item.get("date"):
+                    self.__date = item["date"]
+                    self.notify(kwargs=item)
 
-        self.notify()
-
-    def notify(self):
-        for obs in self._obs_list.values():
-            obs.update(self)
+    def notify(self, *args, **kwargs):
+        if len(kwargs) > 0:
+            self._obs_list.get("GradeView").update(kwargs=kwargs)

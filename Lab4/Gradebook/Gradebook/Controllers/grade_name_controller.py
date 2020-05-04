@@ -9,4 +9,3 @@ class GradeNameController(Controller):
         user_input = input(
             'Podaj nową nazwę oceny: \n')
         self._model.modify({"name": user_input})
-        self._view.show()

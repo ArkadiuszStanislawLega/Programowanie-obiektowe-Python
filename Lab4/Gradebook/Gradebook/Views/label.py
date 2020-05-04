@@ -10,8 +10,8 @@ class Label(View):
             self._component_list[comp.name] = comp
 
     def update(self, *args, **kwargs):
-        for value, key in kwargs:
-            self._model.modify({value: key})
+        self._model = args[0]
+        self.show()
 
     def show(self):
         print(self._model)

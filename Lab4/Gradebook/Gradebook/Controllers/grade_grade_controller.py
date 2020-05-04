@@ -4,7 +4,7 @@ from Enums.grade_type import GradeType
 
 class GradeGradeController(Controller):
     def __init__(self, view, model):
-        super().__init__(view, model)
+        super().__init__(view=view, model=model)
 
     def get_user_input(self):
         grades = ["Anuluj",
@@ -18,7 +18,10 @@ class GradeGradeController(Controller):
         for i, value in enumerate(grades):
             print(f'{i}. {value}')
 
-        user_select = int(input("Ocena którą chcesz wstawić: "))
+        try:
+            user_select = int(input("Ocena którą chcesz wstawić: "))
 
-        if user_select > 0:
-            self._model.update({"grade": GradeType(user_select)})
+            if user_select > 0:
+                self._model.modify({"grade": GradeType(user_select)})
+        except(ValueError):
+            print("Błędna wartość.")
