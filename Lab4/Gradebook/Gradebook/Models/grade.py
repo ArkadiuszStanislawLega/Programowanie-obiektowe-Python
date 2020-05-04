@@ -1,9 +1,11 @@
-from Models.grade_type import GradeType
+from Enums.grade_type import GradeType
+from Models.basic_model import BasicModel
 import datetime
 
 
-class Grade:
+class Grade(BasicModel):
     def __init__(self):
+        super().__init__()
         # id ucznia składa się z jego numeru id oraz daty wystawienia oceny.
         self.__id = ""
         self.__name = ""
@@ -18,6 +20,7 @@ class Grade:
     def id(self, value):
         if isinstance(value, str):
             self.__id = value
+            self.modify()
 
     @property
     def grade(self):
@@ -27,6 +30,15 @@ class Grade:
     def grade(self, value: GradeType):
         if isinstance(value, GradeType):
             self.__grade = value
+            self.modify()
+
+    @property
+    def date(self):
+        return self.__date
+
+    @date.setter
+    def date(self, value):
+        self.__date = value
 
     @property
     def name(self):
@@ -38,3 +50,23 @@ class Grade:
 
     def __str__(self):
         return f'{self.__id}. {self.__name} - {self.__grade}'
+
+    def modify(self, *args, **kwargs):
+        for key, value in kwargs.items():
+            if key == "id":
+                self.__id = value
+
+            elif key == "name":
+                self.__name = value
+
+            elif key == "grade":
+                self.__grade = value
+
+            elif key == "date":
+                self.__date = value
+
+        self.notify()
+
+    def notify(self):
+        for obs in self._obs_list.values():
+            obs.update(self)

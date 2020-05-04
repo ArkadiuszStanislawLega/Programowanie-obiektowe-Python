@@ -1,7 +1,7 @@
 from Models.gradeLog import GradeLog
 from Models.student import Student
-from Models.grade_type import GradeType
-from Models.action_type import ActionType
+from Enums.grade_type import GradeType
+from Enums.action_type import ActionType
 from Models.grade import Grade
 import datetime
 import os

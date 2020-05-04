@@ -1,5 +1,5 @@
 from Models.student import Student
-from Models.grade_type import GradeType
+from Enums.grade_type import GradeType
 
 
 class GradeLog:
