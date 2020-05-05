@@ -1,4 +1,5 @@
 from Controllers.controller import Controller
+from Enums.grade_properties_type import GradePropertiesType
 
 
 class GradeNameController(Controller):
@@ -9,4 +10,4 @@ class GradeNameController(Controller):
         user_input = input(
             'Podaj nową nazwę oceny: ')
         print(80*"=")
-        self._model.modify({"name": user_input})
+        self._model.modify(name=user_input)

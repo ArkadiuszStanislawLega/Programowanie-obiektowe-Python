@@ -1,4 +1,5 @@
 from Controllers.controller import Controller
+from Enums.grade_properties_type import GradePropertiesType
 import datetime
 
 
@@ -7,13 +8,13 @@ class GradeDateController(Controller):
         super().__init__(view=view, model=model)
 
     def get_user_input(self):
-        obj = input(
+        user_input = input(
             'Żeby zaktualizować datę wciśnij "T". Żeby anulować wciśnij "N". ')
         print(80*"=")
-        if obj == 'n':
+        if user_input.lower() == 'n':
             return False
-        elif obj == 't':
-            self._model.modify({"date": datetime.datetime.now()})
+        elif user_input.lower() == 't':
+            self._model.modify(date=datetime.datetime.now())
         else:
             print("Błędna wartość.")
 
