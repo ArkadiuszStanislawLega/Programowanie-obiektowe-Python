@@ -1,7 +1,10 @@
 from Models.school import School
 from Models.grade import Grade
+from Models.student import Student
 from Views.grade_view import GradeView
+from Views.student_view import StudentView
 from Controllers.grade_controller import GradeController
+from Controllers.student_controller import StudentController
 from Enums.grade_type import GradeType
 
 
@@ -13,20 +16,25 @@ def main():
     grade.name = "Sprawdzian"
     grade.grade = GradeType.bdb
 
-    view = GradeView(grade)
-    grade_controller = GradeController(view=view, model=grade)
+    student = Student()
+    student.id = 1
+    student.name = "Mietek"
+    student.surname = "Szcześniak"
 
-    grade.add_observer(view)
+    view = StudentView(student)
+    student_controller = StudentController(view=view, model=student)
+
+    student.add_observer(view)
 
     view.show()
 
-    grade_controller.update_name()
+    student_controller.update_name()
     print(80*"=")
 
-    grade_controller.update_grade()
+    student_controller.update_surname()
     print(80*"=")
 
-    grade_controller.update_date()
+    student_controller.add_grade()
     print(80*"=")
 
 

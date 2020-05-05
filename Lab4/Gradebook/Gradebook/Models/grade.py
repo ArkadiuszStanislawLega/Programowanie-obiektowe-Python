@@ -11,7 +11,7 @@ class Grade(BasicModel):
         self.__name = ""
         self.__grade = GradeType.ndst
         self.__date = datetime.datetime.now()
-
+    # region Properties
     @property
     def id(self):
         return self.__id
@@ -47,6 +47,7 @@ class Grade(BasicModel):
     @name.setter
     def name(self, value):
         self.__name = value
+    # endregion
 
     def __str__(self):
         return f'{self.__id}. {self.__name} - {self.__grade}'

@@ -2,15 +2,14 @@ from Views.view import View
 from Views.label import Label
 
 
-class GradeView(View):
+class StudentView(View):
 
     def __init__(self, model):
-        super().__init__(name="GradeView", model=model)
+        super().__init__(name="StudentView", model=model)
 
         self.add_component(Label("id", model.id))
         self.add_component(Label("name", model.name))
-        self.add_component(Label("grade", model.grade))
-        self.add_component(Label("date", model.date))
+        self.add_component(Label("surname", model.surname))
 
     def add_component(self, comp):
         if comp.name not in self._component_list:

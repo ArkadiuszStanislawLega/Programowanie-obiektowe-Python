@@ -1,14 +1,16 @@
 from Enums.grade_type import GradeType
+from Models.basic_model import BasicModel
 from Models.grade import Grade
 
 
-class Student:
+class Student(BasicModel):
     def __init__(self):
+        super().__init__()
         self.__id = 0
         self.__name = ""
         self.__surname = ""
         self.__grades = {}
-
+    # region Properties
     @property
     def name(self):
         return self.__name
@@ -52,6 +54,8 @@ class Student:
         else:
             return sum_counter
 
+    # endregion
+
     def __str__(self):
         return f'{self.__name} {self.__surname}'
 
@@ -70,3 +74,25 @@ class Student:
     def print_grades(self):
         for grade in self.__grades.values():
             print(f'{grade}')
+
+    def modify(self, *args, **kwargs):
+        pass
+        # if len(kwargs) > 0:
+        #     for key, value in kwargs.items():
+
+        #         if key == "name":
+        #             self.__name = value
+        #             self.notify(name=self.__name)
+
+        #         elif key == "grade":
+        #             self.__grade = value
+        #             self.notify(grade=self.__grade)
+
+        #         elif key == "date":
+        #             self.__date = value
+        #             self.notify(date=self.__date)
+
+    def notify(self, *args, **kwargs):
+        pass
+        # if len(kwargs) > 0:
+        #     self._obs_list.get("GradeView").update(**kwargs)

@@ -1,5 +1,4 @@
 from Controllers.controller import Controller
-from Enums.grade_properties_type import GradePropertiesType
 import datetime
 
 

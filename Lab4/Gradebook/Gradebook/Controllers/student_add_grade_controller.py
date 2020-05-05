@@ -2,11 +2,13 @@ from Controllers.controller import Controller
 from Enums.grade_type import GradeType
 
 
-class GradeGradeController(Controller):
+class StudentAddGradeController(Controller):
     def __init__(self, view, model):
         super().__init__(view=view, model=model)
 
     def get_user_input(self):
+        print(f'Dodawanie stopnia uczniowi: {self._model} ')
+        print(80*"=")
         grades = ["Anuluj",
                   GradeType.ndst,
                   GradeType.dop,
