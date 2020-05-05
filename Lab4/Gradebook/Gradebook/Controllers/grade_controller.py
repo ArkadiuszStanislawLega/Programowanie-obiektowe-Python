@@ -32,6 +32,9 @@ class GradeController(Controller):
             elif user_input == 3:
                 self.update_date()
 
+        elif user_input == 0:
+            print(80*"=")
+
     def update_name(self):
         self.__grade_name_controller.get_user_input()
 

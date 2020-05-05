@@ -1,5 +1,5 @@
 from Controllers.controller import Controller
-from Controllers.grade_grade_controller import GradeGradeController
+from Controllers.grade_controller import GradeController
 from Controllers.grade_name_controller import GradeNameController
 from Controllers.grade_date_controller import GradeDateController
 from Views.grade_view import GradeView
@@ -22,34 +22,9 @@ class StudentEditGradesController(Controller):
         try:
             grade_user_select = int(input("Ocena którą chcesz edytować: "))
             print(80*"=")
-
-            options = ["Anuluj", "Nazwa",  "Stopień", "Data"]
-
-            for i, value in enumerate(options):
-                print(f'{i}. {value}')
-
-            option_user_select = int(input("Wybierz opcję: "))
-            if option_user_select > 0:
-                selected_grade = self._model.grades.get(
-                    keys[grade_user_select])
-                selected_grade_view = selected_grade.obs_list.get("GradeView")
-
-                if option_user_select == 1:
-                    grade_name_controler = GradeNameController(
-                        view=selected_grade_view, model=selected_grade)
-                    grade_name_controler.get_user_input()
-
-                elif option_user_select == 2:
-                    grade_grade_controler = GradeGradeController(
-                        view=selected_grade_view, model=selected_grade)
-                    grade_grade_controler.get_user_input()
-
-                elif option_user_select == 3:
-                    grade_date_controler = GradeDateController(
-                        view=selected_grade_view, model=selected_grade)
-                    grade_date_controler.get_user_input()
-            elif option_user_select == 0:
-                print(80*"=")
+            seleceted_grade = self._model.grades.get(keys[grade_user_select])
+            GradeController(model=seleceted_grade,
+                            view=seleceted_grade.obs_list.get("GradeView"))
 
         except(ValueError):
             print("Błędna wartość.")
