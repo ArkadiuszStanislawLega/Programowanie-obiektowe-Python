@@ -11,4 +11,4 @@ class StudentSurnameController(Controller):
         user_input = input(
             'Podaj nowe nazwisko ucznia: ')
         print(80*"=")
-        self._model.modify(name=user_input)
+        self._model.modify(surname=user_input)

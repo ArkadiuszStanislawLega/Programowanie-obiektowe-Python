@@ -6,6 +6,10 @@ class BasicModel(ABC):
         super().__init__()
         self._obs_list = dict()
 
+    @property
+    def obs_list(self):
+        return self._obs_list
+
     def add_observer(self, obs):
         if obs.name not in self._obs_list:
             self._obs_list[obs.name] = obs

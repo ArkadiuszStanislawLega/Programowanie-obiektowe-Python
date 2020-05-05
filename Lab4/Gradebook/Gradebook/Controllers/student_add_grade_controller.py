@@ -1,5 +1,8 @@
 from Controllers.controller import Controller
+from Models.grade import Grade
+from Views.grade_view import GradeView
 from Enums.grade_type import GradeType
+import datetime
 
 
 class StudentAddGradeController(Controller):
@@ -9,6 +12,7 @@ class StudentAddGradeController(Controller):
     def get_user_input(self):
         print(f'Dodawanie stopnia uczniowi: {self._model} ')
         print(80*"=")
+        user_name_of_grade = input("Podaj nazwę oceny: ")
         grades = ["Anuluj",
                   GradeType.ndst,
                   GradeType.dop,
@@ -22,10 +26,17 @@ class StudentAddGradeController(Controller):
 
         try:
 
-            user_select = int(input("Ocena którą chcesz wstawić: "))
+            user_grade_select = int(input("Ocena którą chcesz wstawić: "))
             print(80*"=")
-            if user_select > 0:
-                self._model.modify(grade=GradeType(user_select))
+            if user_grade_select > 0:
+                new_grade = Grade()
+                new_grade.id = f'{self._model.id} - {new_grade.date}'
+                new_grade.name = user_name_of_grade
+                new_grade.grade = GradeType(user_grade_select)
+                new_grade.add_observer(GradeView(new_grade))
+                self._model.modify(add_grade=new_grade)
+            elif user_grade_select == 0:
+                print(80*"=")
 
         except(ValueError):
             print("Błędna wartość.")

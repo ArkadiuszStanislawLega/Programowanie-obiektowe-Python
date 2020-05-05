@@ -76,23 +76,21 @@ class Student(BasicModel):
             print(f'{grade}')
 
     def modify(self, *args, **kwargs):
-        pass
-        # if len(kwargs) > 0:
-        #     for key, value in kwargs.items():
+        if len(kwargs) > 0:
+            for key, value in kwargs.items():
 
-        #         if key == "name":
-        #             self.__name = value
-        #             self.notify(name=self.__name)
+                if key == "name":
+                    self.__name = value
+                    self.notify(name=self.__name)
 
-        #         elif key == "grade":
-        #             self.__grade = value
-        #             self.notify(grade=self.__grade)
+                elif key == "surname":
+                    self.__surname = value
+                    self.notify(surname=self.__surname)
 
-        #         elif key == "date":
-        #             self.__date = value
-        #             self.notify(date=self.__date)
+                elif key == "add_grade":
+                    self.add_grade(value)
+                    self.notify(add_grade=value)
 
     def notify(self, *args, **kwargs):
-        pass
-        # if len(kwargs) > 0:
-        #     self._obs_list.get("GradeView").update(**kwargs)
+        if len(kwargs) > 0:
+            self._obs_list.get("StudentView").update(**kwargs)

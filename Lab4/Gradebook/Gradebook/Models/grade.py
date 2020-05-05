@@ -70,4 +70,4 @@ class Grade(BasicModel):
 
     def notify(self, *args, **kwargs):
         if len(kwargs) > 0:
-            self._obs_list.get("GradeView").update(**kwargs)
+            self._obs_list.get("GradeView").update(kwargs)

@@ -16,6 +16,22 @@ class GradeController(Controller):
         self.__grade_date_controller = GradeDateController(
             model=model, view=view)
 
+        options = ["Anuluj", "Zmień nazwę", "Zmień ocenę", "Zmień datę"]
+
+        for i, value in enumerate(options):
+            print(f'{i}. {value}')
+
+        user_input = int(input("Wybierz opcję: "))
+        if user_input > 0:
+            if user_input == 1:
+                self.update_name()
+
+            elif user_input == 2:
+                self.update_grade()
+
+            elif user_input == 3:
+                self.update_date()
+
     def update_name(self):
         self.__grade_name_controller.get_user_input()
 
