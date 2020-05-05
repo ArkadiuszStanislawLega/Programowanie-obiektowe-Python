@@ -2,8 +2,9 @@ from Views.view import View
 
 
 class Label(View):
-    def __init__(self, name, model):
+    def __init__(self, name, model, title):
         super().__init__(name=name, model=model)
+        self.__title = title
 
     def add_component(self, comp):
         if comp.name not in self._component_list:
@@ -14,4 +15,4 @@ class Label(View):
         self.show()
 
     def show(self):
-        print(self._model)
+        print(f'{self.__title} {self._model}')

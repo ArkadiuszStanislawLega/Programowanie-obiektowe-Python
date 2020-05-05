@@ -50,7 +50,7 @@ class Grade(BasicModel):
     # endregion
 
     def __str__(self):
-        return f'{self.__id}. {self.__name} - {self.__grade}'
+        return f'{self.__id}. {self.__name} - {self.__grade} - {self.__date}'
 
     def modify(self, *args, **kwargs):
         if len(kwargs) > 0:

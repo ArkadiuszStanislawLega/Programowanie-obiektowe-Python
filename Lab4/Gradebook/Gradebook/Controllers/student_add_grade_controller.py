@@ -30,7 +30,7 @@ class StudentAddGradeController(Controller):
             print(80*"=")
             if user_grade_select > 0:
                 new_grade = Grade()
-                new_grade.id = f'{self._model.id} - {new_grade.date}'
+                new_grade.id = f'{self._model.id}/{len(self._model.grades)+1}'
                 new_grade.name = user_name_of_grade
                 new_grade.grade = GradeType(user_grade_select)
                 new_grade.add_observer(GradeView(new_grade))

@@ -16,10 +16,9 @@ def main():
 
     view = StudentView(student)
     student.add_observer(view)
+    view.show()
 
     StudentController(view=view, model=student)
-
-    student.print_grades()
 
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@ class StudentController(Controller):
         self.__is_exit = False
 
         options = ["Anuluj", "Zmień imię", "Zmień nazwisko",
-                   "Dodaj stopnie", "Edytuj Stopnie"]
+                   "Dodaj stopnie", "Edytuj Stopnie", "Wyświetl Profil"]
         while not self.__is_exit:
             for i, value in enumerate(options):
                 print(f'{i}. {value}')
@@ -39,6 +39,9 @@ class StudentController(Controller):
 
                 elif user_input == 4:
                     self.update_grades()
+
+                elif user_input == 5:
+                    self.view.show(refresh_mode=True)
 
             elif user_input == 0:
                 self.__is_exit = True

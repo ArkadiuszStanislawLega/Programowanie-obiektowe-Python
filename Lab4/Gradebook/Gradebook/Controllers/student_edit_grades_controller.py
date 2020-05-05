@@ -28,3 +28,6 @@ class StudentEditGradesController(Controller):
 
         except(ValueError):
             print("Błędna wartość.")
+
+        except(IndexError):
+            print("Błędna wartość.")
