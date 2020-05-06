@@ -57,10 +57,10 @@ class Student(BasicModel):
     # endregion
 
     def __str__(self):
-        return f'{self.__name} {self.__surname}'
+        return f'{self.__id} {self.__name} {self.__surname}'
 
     def __repr__(self):
-        return f'{self.__name} {self.__surname}'
+        return f'{self.__id} {self.__name} {self.__surname}'
 
     def add_grade(self, grade: Grade):
         if isinstance(grade, Grade):
