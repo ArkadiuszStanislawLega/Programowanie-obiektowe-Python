@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse('<h1>Tournaments</h1>')
+    return HttpResponse('<h1>Blog</h1>')
