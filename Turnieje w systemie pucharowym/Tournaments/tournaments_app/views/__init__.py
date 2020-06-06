@@ -1,0 +1,1 @@
+from .tournaments_views import AllTournamentsView, CreateTournamentView, UpdateTournamentView, DetailTournamentView, DeleteTournamentView
