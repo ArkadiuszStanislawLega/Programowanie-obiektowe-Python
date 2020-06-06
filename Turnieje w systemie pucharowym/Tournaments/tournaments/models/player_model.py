@@ -1,12 +1,12 @@
 from django.db import models
 from django.urls import reverse
-from team_model import Team
+from .team_model import Team
 
 
 class Player(models.Model):
     id = models.AutoField(db_index=True, primary_key=True)
-    name = models.CharField()
-    surname = models.CharField()
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=20)
     team = models.ForeignKey(Team, on_delete=models.DO_NOTHING)
 
     def get_absolute_urls(self):
