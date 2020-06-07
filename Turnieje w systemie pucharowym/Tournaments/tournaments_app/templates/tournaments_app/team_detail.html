@@ -1,0 +1,14 @@
+{% extends "tournaments_app/base.html" %}
+{% block content %}
+<article>
+    {% if object %}
+    <a href="{% url 'team_update' object.id %}">Edytuj</a>
+    <a href="{% url 'team_delete' object.id %}">Usuń</a>
+    <div>
+        <h2>{{ object.id }}</h2>
+        <p>Nazwa zespołu> {{ object.name }}</p>
+        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+    </div>
+    {% endif %}
+</article>
+{% endblock content %}

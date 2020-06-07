@@ -6,8 +6,6 @@ from .tournament_model import Tournament
 class Team(models.Model):
     id = models.AutoField(db_index=True, primary_key=True)
     name = models.CharField(max_length=20)
-    registered_tournaments = models.ManyToManyField(
-        'tournaments_app.Tournament', blank=True, null=True)
 
     def get_absolute_urls(self):
         return reverse('postion_detail', kwargs={'pk': self.id})

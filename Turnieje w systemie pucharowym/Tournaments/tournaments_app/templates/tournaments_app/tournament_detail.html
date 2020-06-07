@@ -10,7 +10,7 @@
 
         {% for team in object.get_all_teams %}
         <div>
-            <a href="">{{ team.name }} </a>
+            <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
         </div>
         {% endfor %}
         {% endif %}
