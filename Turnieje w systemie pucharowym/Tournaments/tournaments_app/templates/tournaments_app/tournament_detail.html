@@ -4,6 +4,13 @@
     <div>
         <h2>{{ object.id }}</h2>
         <p>{{ object.name }}</p>
+        {% if object %}
+        {% for team in object.get_all_teams %}
+        <div>
+            <a href="">{{ team.name }} </a>
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </article>
 {% endblock content %}
