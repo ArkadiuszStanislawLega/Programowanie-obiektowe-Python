@@ -12,16 +12,9 @@ from django.shortcuts import render, get_object_or_404
 from tournaments_app.models import Tournament
 
 
-def home(request):
-    context = {
-        'Tournaments':  Tournament.objects.all()
-    }
-    return render(request, 'tournaments/base.html', context)
-
-
 class AllTournamentsView(LoginRequiredMixin, ListView):
     model = Tournament
-    login_url = reverse_lazy('index')
+    #login_url = reverse_lazy('tournaments-home')
     # paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -30,12 +23,6 @@ class AllTournamentsView(LoginRequiredMixin, ListView):
 
 class DetailTournamentView(LoginRequiredMixin, DetailView):
     model = Tournament
-    login_url = reverse_lazy('index')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
 
 
 class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
