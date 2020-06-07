@@ -14,7 +14,7 @@ from tournaments_app.models import Tournament
 
 class AllTournamentsView(LoginRequiredMixin, ListView):
     model = Tournament
-    #login_url = reverse_lazy('tournaments-home')
+    # login_url = reverse_lazy('tournaments-home')
     # paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -27,7 +27,7 @@ class DetailTournamentView(LoginRequiredMixin, DetailView):
 
 class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Tournament
-    template_name = 'tournaments_app/tournaments_add.html'
+    login_url = 'tournament_add'
     fields = ['name', 'start_date', 'end_date', 'max_number_of_players']
 
     def form_valid(self, form):
@@ -35,15 +35,22 @@ class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('tournament_detail', args=(self.object.pk,))
+        return reverse('tournament_detail', args=(self.object.pk))
 
 
 class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date', 'max_number_of_players']
+    login_url = 'tournament_update'
     success_message = "Entry was created successfully"
-    success_url = reverse_lazy('all_positions')
-    login_url = reverse_lazy('index')
+    success_url = reverse_lazy('tournament_detail')
+
+    def form_valid(self, form):
+        form.instance.username = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('tournaments-home')
 
 
 class DeleteTournamentView(LoginRequiredMixin, DeleteView):
@@ -51,4 +58,4 @@ class DeleteTournamentView(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('index')
 
     def get_success_url(self):
-        return reverse('all_positions')
+        return reverse('tournaments-home')

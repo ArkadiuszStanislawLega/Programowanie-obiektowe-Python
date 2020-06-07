@@ -1,0 +1,12 @@
+{% extends "tournaments_app/base.html" %}
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {{ form|crispy }}
+        </div>
+        <button type="submit">Zatwierdź zmiany</button>
+        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+</div>
+{% endblock content %}

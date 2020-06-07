@@ -1,0 +1,15 @@
+{% extends "tournaments_app/base.html" %}
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Potwierdź usunięcie></legend>
+            Czy na pewno chcesz usunąć turniej> {{ object.name }}
+        </fieldset>
+        <div>
+            <button type="submit">Zatwierdź</button>
+            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        </div>
+</div>
+{% endblock content %}

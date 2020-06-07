@@ -1,13 +1,19 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
+    <a href="{% url 'tournament_add' %}">Dodaj nowy turniej</a>
     <div>
         {% if Tournaments  %}
-        {% for tournament in Tournaments %}
-        <div class="alert alert-{{ message.tags }}">
-            <a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a>
-        </div>
-        {% endfor %}
+        <fieldset>
+            <legend>Wszsytkie turnieje></legend>
+            {% for tournament in Tournaments %}
+
+            <div class="alert alert-{{ message.tags }}">
+                <a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a>
+            </div>
+
+            {% endfor %}
+        </fieldset>
         {% endif %}
     </div>
 </article>

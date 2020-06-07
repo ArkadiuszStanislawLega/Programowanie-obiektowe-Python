@@ -1,10 +1,13 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
+    {% if object %}
+    <a href="{% url 'tournament_update' object.id %}">Edytuj</a>
+    <a href="{% url 'tournament_delete' object.id %}">Usuń</a>
     <div>
         <h2>{{ object.id }}</h2>
         <p>{{ object.name }}</p>
-        {% if object %}
+
         {% for team in object.get_all_teams %}
         <div>
             <a href="">{{ team.name }} </a>

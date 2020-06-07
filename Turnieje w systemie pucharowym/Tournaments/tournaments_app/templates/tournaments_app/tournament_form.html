@@ -1,15 +1,16 @@
-{% extends "blog/base.html" %}
+{% extends "tournaments_app/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div>
     <form method="POST">
         {% csrf_token %}
         <fieldset>
-            <legend>Turniej</legend>
+            <legend>Turniej></legend>
             {{ form|crispy }}
         </fieldset>
         <div>
-            <button type="submit">Post</button>
+            <button type="submit">Zatwierdź</button>
+            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
         </div>
     </form>
 </div>

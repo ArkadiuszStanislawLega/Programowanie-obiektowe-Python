@@ -10,31 +10,24 @@
     <title>Tournaments</title>
     {% endif %}
 </head>
+<!-- color:#008000;background:#000c00;-->
 
-<body>
+<body style="font-family:Consolas,garamond,serif;font-size:16px;">
     <header>
         <nav>
             <div class="container">
                 <a href="{% url 'tournaments-home' %}">Tournaments</a>
-                <div>
-                    <div>
-                        <a href="{% url 'tournaments-home' %}">Home</a>
-                        <a href="">About</a>
-                        {% if user.is_authenticated %}
-                        {% endif %}
-                    </div>
-                    <!-- Navbar Right Side -->
-                    <div>
-                        {% if user.is_authenticated %}
-                        <a href="">Nowy Post</a>
-                        <a href="">Profil</a>
-                        <a href="">Wyloguj</a>
-                        {% else %}
-                        <a href="">Zaloguj</a>
-                        <a href="">Zarejestruj</a>
-                        {% endif %}
-                    </div>
-                </div>
+                <a href="{% url 'tournaments-home' %}">Home</a>
+                <a href="">About</a>
+
+                {% if user.is_authenticated %}
+                <a href="">Nowy Post</a>
+                <a href="">Profil</a>
+                <a href="">Wyloguj</a>
+                {% else %}
+                <a href="">Zaloguj</a>
+                <a href="">Zarejestruj</a>
+                {% endif %}
             </div>
         </nav>
     </header>
