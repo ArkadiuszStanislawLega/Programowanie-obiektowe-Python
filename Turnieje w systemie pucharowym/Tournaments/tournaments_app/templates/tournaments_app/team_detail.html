@@ -7,6 +7,12 @@
     <div>
         <h2>{{ object.id }}</h2>
         <p>Nazwa zespołu> {{ object.name }}</p>
+        <p>Gracze> </p>
+        {% for player in object.get_players %}
+        <div>
+            <a href="">{{ player.name }}</a>
+        </div>
+        {% endfor %}
         <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
     </div>
     {% endif %}
