@@ -27,10 +27,15 @@ class DetailTournamentView(LoginRequiredMixin, DetailView):
 
 class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Tournament
+    template_name = 'tournaments_app/tournaments_add.html'
     fields = ['name', 'start_date', 'end_date', 'max_number_of_players']
-    success_message = "Entry was created successfully"
-    success_url = reverse_lazy('all_positions')
-    login_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.instance.username = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('tournament_detail', args=(self.object.pk,))
 
 
 class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

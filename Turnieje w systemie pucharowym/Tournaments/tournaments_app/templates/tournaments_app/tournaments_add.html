@@ -1,0 +1,19 @@
+{% block content %}
+{% load crispy_forms_tags %}
+<article>
+    <div>
+        <h2>{{ object.name }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Dodaj nowego turniej</legend>
+                {{ form|crispy }}
+            </fieldset>
+
+            <div>
+                <button type="submit">Dodaj</button>
+                <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+            </div>
+    </div>
+</article>
+{% endblock content %}
