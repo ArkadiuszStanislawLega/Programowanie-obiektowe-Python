@@ -9,9 +9,14 @@ class Tournament(models.Model):
     end_date = models.DateField()
     max_number_of_players = models.IntegerField()
     registered_teams = models.ManyToManyField('tournaments_app.Team')
+    registerd_games = models.ManyToManyField('tournaments_app.Game',
+                                             related_name='%(class)s_registerd_games')
 
     def get_all_teams(self):
         return self.registered_teams.all()
+
+    def get_all_games(self):
+        return self.registerd_games.all()
 
     def get_absolute_urls(self):
         return reverse('postion_detail', kwargs={'pk': self.id})

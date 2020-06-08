@@ -5,16 +5,10 @@ from django.urls import reverse
 class Game(models.Model):
     id = models.AutoField(db_index=True, primary_key=True)
     date = models.DateField()
-    score_a = models.ForeignKey('tournaments_app.Score',
-                                null=True,
-                                blank=True,
-                                related_name='%(class)s_core_a_team',
-                                on_delete=models.DO_NOTHING)
-    score_b = models.ForeignKey('tournaments_app.Score',
-                                null=True,
-                                blank=True,
-                                related_name='%(class)s_score_b_team',
-                                on_delete=models.DO_NOTHING)
+    score_a = models.IntegerField(null=True,
+                                  blank=True)
+    score_b = models.IntegerField(null=True,
+                                  blank=True)
 
     team_a = models.ForeignKey('tournaments_app.Team',
                                related_name='%(class)s_a_team',
@@ -29,6 +23,12 @@ class Game(models.Model):
 
     def get_absolute_urls(self):
         return reverse('postion_detail', kwargs={'pk': self.id})
+
+    def get_winner(self):
+        if self.score_a > self.score_b:
+            return self.team_a
+        elif self.score_b > self.score_a:
+            return self.team_b
 
     def __str__(self):
         return f'{self.id} {self.team_a.name} - {self.team_b.name} wynik: {self.score_a} : {self.score_b}'
