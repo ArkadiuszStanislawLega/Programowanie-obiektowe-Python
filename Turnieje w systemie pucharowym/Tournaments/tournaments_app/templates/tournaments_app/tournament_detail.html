@@ -1,17 +1,27 @@
 {% extends "tournaments_app/base.html" %}
+
 {% block content %}
 <article>
     {% if object %}
     <a href="{% url 'tournament_update' object.id %}">Edytuj</a>
     <a href="{% url 'tournament_delete' object.id %}">Usuń</a>
     <div>
-        <h2>{{ object.id }}</h2>
-        <p>{{ object.name }}</p>
-
-        {% for team in object.get_all_teams %}
-        <div>
-            <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
-        </div>
+        <h1>Turniej> {{ object.name }}</h1>
+        <fieldset>
+            <legend>Drużyny></legend>
+            {% for team in object.get_all_teams %}
+            <div>
+                <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
+            </div>
+            {% endfor %}
+        </fieldset>
+        <fieldset>
+            <legend>Mecze></legend>
+            {% for game in object.get_all_games %}
+            <div>
+                <a href="{% url 'game_detail' game.pk %}">{{ game }}</a>
+            </div>
+        </fieldset>
         {% endfor %}
         {% endif %}
     </div>
