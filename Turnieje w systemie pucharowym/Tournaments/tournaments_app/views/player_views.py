@@ -9,51 +9,51 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 
-from tournaments_app.models import Team
+from tournaments_app.models import Player
 
 
-class AllTeamView(LoginRequiredMixin, ListView):
-    model = Team
+class AllPlayerView(LoginRequiredMixin, ListView):
+    model = Player
 
     def get_context_data(self, **kwargs):
-        return {'Teams':  Team.objects.all()}
+        return {'Players':  Player.objects.all()}
 
 
-class DetailTeamView(LoginRequiredMixin, DetailView):
-    model = Team
+class DetailPlayerView(LoginRequiredMixin, DetailView):
+    model = Player
 
 
-class CreateTeamView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Team
-    login_url = 'team_add'
-    fields = ['name']
+class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Player
+    login_url = 'player_add'
+    fields = ['name', 'surname']
 
     def form_valid(self, form):
         form.instance.username = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('team-home')
+        return reverse('player-home')
 
 
-class UpdateTeamView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Team
-    fields = ['name']
-    login_url = 'team_update'
+class UpdatePlayerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Player
+    fields = ['name', 'surname']
+    login_url = 'player_update'
     success_message = "Entry was created successfully"
-    success_url = reverse_lazy('team_detail')
+    success_url = reverse_lazy('player_detail')
 
     def form_valid(self, form):
         form.instance.username = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('team-home')
+        return reverse('player-home')
 
 
-class DeleteTeamView(LoginRequiredMixin, DeleteView):
-    model = Team
+class DeletePlayerView(LoginRequiredMixin, DeleteView):
+    model = Player
     login_url = reverse_lazy('index')
 
     def get_success_url(self):
-        return reverse('team-home')
+        return reverse('player-home')

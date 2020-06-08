@@ -2,11 +2,10 @@
 {% load crispy_forms_tags %}
 <article>
     <div>
-        <h2>{{ object.name }}</h2>
         <form method="POST">
             {% csrf_token %}
             <fieldset>
-                <legend>Dodaj nowy turniej</legend>
+                <legend>Dodaj nową drużynę</legend>
                 {{ form|crispy }}
             </fieldset>
 

@@ -10,7 +10,7 @@
         <p>Gracze> </p>
         {% for player in object.get_players %}
         <div>
-            <a href="">{{ player.name }}</a>
+            <a href="{% url 'player_detail' player.pk %}">{{ player.name }}</a>
         </div>
         {% endfor %}
         <a href="{{request.META.HTTP_REFERER}}">Powrót</a>

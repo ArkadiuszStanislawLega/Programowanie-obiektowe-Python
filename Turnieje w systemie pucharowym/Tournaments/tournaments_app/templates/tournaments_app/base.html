@@ -16,8 +16,10 @@
     <header>
         <nav>
             <div class="container">
+                <a href="{% url 'blog-home' %}">Home</a>
                 <a href="{% url 'tournaments-home' %}">Tournaments</a>
-                <a href="{% url 'tournaments-home' %}">Home</a>
+                <a href="{% url 'team-home' %}">Drużyny</a>
+                <a href="{% url 'player-home' %}">Gracze</a>
                 <a href="">About</a>
 
                 {% if user.is_authenticated %}

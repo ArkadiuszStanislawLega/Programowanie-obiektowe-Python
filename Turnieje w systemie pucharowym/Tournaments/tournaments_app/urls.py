@@ -21,6 +21,9 @@ urlpatterns = [
          DeleteTournamentView.as_view(),
          name="tournament_delete"),
 
+    path('team/',
+         AllTeamView.as_view(),
+         name="team-home"),
 
     path('team/add/',
          CreateTeamView.as_view(),
@@ -37,5 +40,27 @@ urlpatterns = [
     path('team/<int:pk>/delete',
          DeleteTeamView.as_view(),
          name="team_delete"),
+
+
+    path('player/',
+         AllPlayerView.as_view(),
+         name="player-home"),
+
+    path('player/add/',
+         CreatePlayerView.as_view(),
+         name="player_add"),
+
+    path('player/<int:pk>/update',
+         UpdatePlayerView.as_view(),
+         name="player_update"),
+
+    path('player/detail/<int:pk>/',
+         DetailPlayerView.as_view(),
+         name="player_detail"),
+
+    path('player/<int:pk>/delete',
+         DeletePlayerView.as_view(),
+         name="player_delete"),
+
 
 ]

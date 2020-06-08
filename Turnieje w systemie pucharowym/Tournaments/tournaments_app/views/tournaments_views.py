@@ -35,7 +35,7 @@ class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('tournament_detail', args=(self.object.pk))
+        return reverse('tournament-home')
 
 
 class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
