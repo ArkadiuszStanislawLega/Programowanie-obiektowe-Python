@@ -6,11 +6,11 @@
         {% if Rounds  %}
         <fieldset>
             <legend>Wszystkie rundy></legend>
-            {% for round in Rounds %}
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'round_detail' round.id %}">{{ round.name }} </a>
-            </div>
-            {% endfor %}
+            <ol>
+                {% for round in Rounds %}
+                <li><a href="{% url 'round_detail' round.id %}">{{ round.tournament.name }}-{{ round.name }}</a></li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>

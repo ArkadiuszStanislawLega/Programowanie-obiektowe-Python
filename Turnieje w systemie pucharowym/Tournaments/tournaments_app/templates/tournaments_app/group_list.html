@@ -6,13 +6,13 @@
         {% if Groups  %}
         <fieldset>
             <legend>Wszystkie grupy></legend>
-            {% for group in Groups %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'group_detail' group.id %}">{{ group.name }} </a>
-            </div>
-
-            {% endfor %}
+            <ol>
+                {% for group in Groups %}
+                <li><a
+                        href="{% url 'group_detail' group.id %}">{{ group.round.tournament.name }}-{{ group.round.name }}-{{ group.name }}</a>
+                </li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>
