@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
-from .game_model import Game
+from .round_model import Round
 
 
 class Tournament(models.Model):
@@ -15,8 +15,8 @@ class Tournament(models.Model):
     def get_all_teams(self):
         return self.registered_teams.all()
 
-    def get_all_games(self):
-        return Game.objects.filter(tournament_id=self.id)
+    def get_all_rounds(self):
+        return Round.objects.filter(tournament=self)
 
     def get_absolute_urls(self):
         return reverse('postion_detail', kwargs={'pk': self.id})

@@ -81,4 +81,44 @@ urlpatterns = [
     path('game/<int:pk>/delete',
          DeleteGameView.as_view(),
          name="game_delete"),
+
+    path('round/',
+         AllGameView.as_view(),
+         name="round-home"),
+
+    path('round/add/',
+         CreateRoundView.as_view(),
+         name="round_add"),
+
+    path('round/<int:pk>/update',
+         UpdateRoundView.as_view(),
+         name="round_update"),
+
+    path('round/detail/<int:pk>/',
+         DetailRoundView.as_view(),
+         name="round_detail"),
+
+    path('round/<int:pk>/delete',
+         DeleteRoundView.as_view(),
+         name="round_delete"),
+
+    path('group/',
+         AllGroupView.as_view(),
+         name="group-home"),
+
+    path('group/add/',
+         CreateGroupView.as_view(),
+         name="group_add"),
+
+    path('group/<int:pk>/update',
+         UpdateGroupView.as_view(),
+         name="group_update"),
+
+    path('group/detail/<int:pk>/',
+         DetailGroupView.as_view(),
+         name="group_detail"),
+
+    path('group/<int:pk>/delete',
+         DeleteGroupView.as_view(),
+         name="group_delete"),
 ]

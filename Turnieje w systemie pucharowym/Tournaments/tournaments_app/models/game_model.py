@@ -18,8 +18,8 @@ class Game(models.Model):
                                related_name='%(class)s_b_team',
                                on_delete=models.DO_NOTHING)
 
-    tournament = models.ForeignKey('tournaments_app.Tournament',
-                                   on_delete=models.CASCADE)
+    group = models.ForeignKey('tournaments_app.Group',
+                              on_delete=models.CASCADE)
 
     def get_absolute_urls(self):
         return reverse('postion_detail', kwargs={'pk': self.id})

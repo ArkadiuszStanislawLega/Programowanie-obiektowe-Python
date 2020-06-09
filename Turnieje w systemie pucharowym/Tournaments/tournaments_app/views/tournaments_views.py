@@ -42,7 +42,7 @@ class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date',
-              'max_number_of_players', 'registerd_teams', 'registerd_games']
+              'max_number_of_players']
     login_url = 'tournament_update'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('tournament_detail')
