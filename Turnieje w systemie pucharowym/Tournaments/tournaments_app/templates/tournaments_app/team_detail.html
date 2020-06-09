@@ -5,14 +5,15 @@
     <a href="{% url 'team_update' object.id %}">Edytuj</a>
     <a href="{% url 'team_delete' object.id %}">Usuń</a>
     <div>
-        <h2>{{ object.id }}</h2>
-        <p>Nazwa zespołu> {{ object.name }}</p>
-        <p>Gracze> </p>
-        {% for player in object.get_players %}
-        <div>
-            <a href="{% url 'player_detail' player.pk %}">{{ player.name }}</a>
-        </div>
-        {% endfor %}
+        <h2>Nazwa zespołu> {{ object.name }}</h2>
+        <fieldset>
+            <legend>Gracze></legend>
+            <ol>
+                {% for player in object.get_players %}
+                <li><a href="{% url 'player_detail' player.pk %}">{{ player.name }}</a></li>
+                {% endfor %}
+            </ol>
+        </fieldset>
         <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
     </div>
     {% endif %}

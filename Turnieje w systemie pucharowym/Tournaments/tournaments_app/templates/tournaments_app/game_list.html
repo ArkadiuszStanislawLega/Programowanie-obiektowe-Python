@@ -8,7 +8,7 @@
             <legend>Wszystkie mecze></legend>
             <ol>
                 {% for game in Games %}
-                <li><a href="{% url 'game_detail' game.id %}">{{ game.group.name }}
+                <li><a href="{% url 'game_detail' game.pk %}">{{ game.group.name }}
                         {{ game.team_a.name }}-{{ game.team_b.name }}
                         ({{ game.score_a }}:{{ game.score_b }})</a></li>
                 {% endfor %}

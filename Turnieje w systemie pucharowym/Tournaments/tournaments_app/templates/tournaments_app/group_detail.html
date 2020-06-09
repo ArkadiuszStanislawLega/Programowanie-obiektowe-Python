@@ -6,20 +6,24 @@
     <a href="{% url 'group_delete' object.id %}">Usuń</a>
     <div>
         <h2>Nazwa grupy> {{ object.name }}</h2>
-        <p>Runda rundy> {{ object.round.name }}</p>
+        <p>Runda> <a href="{% url 'round_detail' object.round.pk %}">{{ object.round.name }}</a></p>
+        <p>Turniej> <a
+                href="{% url 'tournament_detail' object.round.tournament.pk %}">{{ object.round.tournament.name }}</a>
+        </p>
         <p>Drużyny> <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a.name }}</a> vs <a
                 href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b.name }}</a></p>
 
         {% if object.get_all_games  %}
         <fieldset>
             <legend>Wszystkie mecze rozgrane w grupie></legend>
-            {% for game in object.get_all_games %}
+            <ol>
+                {% for game in object.get_all_games %}
 
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'game_detail' game.id %}">{{ game }} </a>
-            </div>
+                <li> <a href="{% url 'game_detail' game.pk %}">{{ game.team_a }}-{{ game.team_b }}
+                        ({{ game.score_a }}:{{ game.score_b }}) </a></li>
 
-            {% endfor %}
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>

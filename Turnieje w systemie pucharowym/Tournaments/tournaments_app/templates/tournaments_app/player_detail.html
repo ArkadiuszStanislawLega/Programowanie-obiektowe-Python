@@ -5,9 +5,7 @@
     <a href="{% url 'player_update' object.id %}">Edytuj</a>
     <a href="{% url 'player_delete' object.id %}">Usuń</a>
     <div>
-        <h2>{{ object.id }}</h2>
-        <p>Imię> {{ object.name }}</p>
-        <p>Nazwisko> {{ object.name }}</p>
+        <h2>Gracz> {{ object.name }} {{ object.surname }}</h2>
         <p>Drużyna> <a href="{% url 'team_detail' object.team.pk %}">{{ object.team }}</a></p>
         <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
     </div>
