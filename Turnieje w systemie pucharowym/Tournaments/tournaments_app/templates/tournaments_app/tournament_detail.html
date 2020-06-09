@@ -15,14 +15,15 @@
             </div>
             {% endfor %}
         </fieldset>
+
         <fieldset>
             <legend>Mecze></legend>
             {% for game in object.get_all_games %}
             <div>
                 <a href="{% url 'game_detail' game.pk %}">{{ game }}</a>
             </div>
+            {% endfor %}
         </fieldset>
-        {% endfor %}
         {% endif %}
     </div>
 </article>
