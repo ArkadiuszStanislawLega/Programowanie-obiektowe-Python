@@ -38,7 +38,7 @@ class CreateGameView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdateGameView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Game
-    fields = ['date', 'tournament', 'team_a', 'team_b', 'score_a', 'score_b']
+    fields = ['date', 'group', 'team_a', 'team_b', 'score_a', 'score_b']
     login_url = 'game_update'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('game_detail')

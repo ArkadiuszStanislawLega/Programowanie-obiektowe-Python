@@ -21,24 +21,26 @@
             {% for round in object.get_all_rounds %}
             <div>
                 <a href="{% url 'round_detail' round.pk %}">{{ round.name }}</a>
-                <fieldset>
-                    {% for group in round.get_all_groups %}
-                    <legend>Grupa {{ group.name }}></legend>
-                    <div>
-                        <a href="{% url 'group_detail' group.pk %}">{{ group.name }}</a>
-                        <legend>Rozegrane mecze w grupie {{ group.name }}></legend>
-                        <div>
-                            {% for game in group.get_all_games %}
-                            <div style=background:#c6ccc6;>
-                                <h3>{{ game.team_a }}-{{ game.team_b }} {{ game.score_a }}:{{ game.score_b }}</h4>
-                                    <a href="{% url 'game_detail' game.pk %}">{{ game.date }}</a>
-                            </div>
-                            {% endfor %}
-                        </div>
 
+                {% for group in round.get_all_groups %}
+                <fieldset>
+                    <legend>Grupa {{ group.name }}></legend>
+                    <a href="{% url 'group_detail' group.pk %}">Rozegrane mecze w grupie {{ group.name }}</a>
+                    <div>
+                        ilość rozegranych meczy: {{group.get_all_games.count}}
                     </div>
-                    {% endfor %}
+                    <div>
+                        {% for game in group.get_all_games %}
+                        <div style=background:#c6ccc6;>
+                            <h3>{{ game.team_a.name }}-{{ game.team_b.name }} {{ game.score_a }}:{{ game.score_b }}
+                                </h4>
+                                <a href="{% url 'game_detail' game.pk %}">{{ game.date }}</a>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </fieldset>
+                {% endfor %}
+
             </div>
             {% endfor %}
         </fieldset>

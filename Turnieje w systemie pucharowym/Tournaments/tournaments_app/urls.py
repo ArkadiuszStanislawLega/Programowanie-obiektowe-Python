@@ -83,7 +83,7 @@ urlpatterns = [
          name="game_delete"),
 
     path('round/',
-         AllGameView.as_view(),
+         AllRoundView.as_view(),
          name="round-home"),
 
     path('round/add/',

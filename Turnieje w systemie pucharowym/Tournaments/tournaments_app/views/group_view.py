@@ -26,7 +26,7 @@ class DetailGroupView(LoginRequiredMixin, DetailView):
 class CreateGroupView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Group
     login_url = 'group_add'
-    fields = ['name', 'team_a', 'team_b', 'winner']
+    fields = ['name', 'team_a', 'team_b', 'winner', 'round']
 
     def form_valid(self, form):
         form.instance.username = self.request.user
@@ -38,8 +38,8 @@ class CreateGroupView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdateGroupView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Group
-    fields = ['name', 'team_a', 'team_b', 'winner']
-    login_url = 'game_update'
+    fields = ['name', 'team_a', 'team_b', 'winner', 'round']
+    login_url = 'group_update'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('group_detail')
 

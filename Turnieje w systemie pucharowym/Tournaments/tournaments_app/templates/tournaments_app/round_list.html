@@ -1,17 +1,15 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'game_add' %}">Dodaj nowy mecz</a>
+    <a href="{% url 'round_add' %}">Dodaj nową rundę</a>
     <div>
-        {% if Games  %}
+        {% if Rounds  %}
         <fieldset>
-            <legend>Wszystkie mecze></legend>
-            {% for game in Games %}
-
+            <legend>Wszystkie rundy></legend>
+            {% for round in Rounds %}
             <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'game_detail' game.id %}">{{ game }} </a>
+                <a href="{% url 'round_detail' round.id %}">{{ round.name }} </a>
             </div>
-
             {% endfor %}
         </fieldset>
         {% endif %}
