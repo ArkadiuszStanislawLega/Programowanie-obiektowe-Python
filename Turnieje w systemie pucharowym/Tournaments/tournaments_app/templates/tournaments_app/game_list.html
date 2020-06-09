@@ -6,13 +6,13 @@
         {% if Games  %}
         <fieldset>
             <legend>Wszystkie mecze></legend>
-            {% for game in Games %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'game_detail' game.id %}">{{ game }} </a>
-            </div>
-
-            {% endfor %}
+            <ol>
+                {% for game in Games %}
+                <li><a href="{% url 'game_detail' game.id %}">{{ game.group.name }}
+                        {{ game.team_a.name }}-{{ game.team_b.name }}
+                        ({{ game.score_a }}:{{ game.score_b }})</a></li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>

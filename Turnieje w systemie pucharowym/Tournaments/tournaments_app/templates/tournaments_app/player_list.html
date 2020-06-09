@@ -6,13 +6,11 @@
         {% if Players  %}
         <fieldset>
             <legend>Wszscy gracze></legend>
-            {% for player in Players %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'player_detail' player.id %}">{{ player }} </a>
-            </div>
-
-            {% endfor %}
+            <ol>
+                {% for player in Players %}
+                <li> <a href="{% url 'player_detail' player.id %}">{{ player.name }} {{ player.sruname }}</a></li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>

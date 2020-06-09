@@ -6,13 +6,11 @@
         {% if Tournaments  %}
         <fieldset>
             <legend>Wszsytkie turnieje></legend>
-            {% for tournament in Tournaments %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a>
-            </div>
-
-            {% endfor %}
+            <ol>
+                {% for tournament in Tournaments %}
+                <li><a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a> </li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>

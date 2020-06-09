@@ -6,13 +6,11 @@
         {% if Teams  %}
         <fieldset>
             <legend>Wszsytkie drużyny></legend>
-            {% for team in Teams %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'team_detail' team.id %}">{{ team.name }} </a>
-            </div>
-
-            {% endfor %}
+            <ol>
+                {% for team in Teams %}
+                <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
+                {% endfor %}
+            </ol>
         </fieldset>
         {% endif %}
     </div>
