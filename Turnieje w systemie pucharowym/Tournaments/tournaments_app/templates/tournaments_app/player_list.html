@@ -8,7 +8,7 @@
             <legend>Wszscy gracze></legend>
             <ol>
                 {% for player in Players %}
-                <li> <a href="{% url 'player_detail' player.id %}">{{ player.name }} {{ player.sruname }}</a></li>
+                <li> <a href="{% url 'player_detail' player.id %}">{{ player.name }} {{ player.surname }}</a></li>
                 {% endfor %}
             </ol>
         </fieldset>
