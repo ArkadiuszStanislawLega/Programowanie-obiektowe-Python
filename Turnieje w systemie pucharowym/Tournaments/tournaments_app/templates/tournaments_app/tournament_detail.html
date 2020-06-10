@@ -32,9 +32,10 @@
                     <div>
                         {% for game in group.get_all_games %}
                         <div style=background:#c6ccc6;>
-                            <h3>{{ game.team_a.name }}-{{ game.team_b.name }} {{ game.score_a }}:{{ game.score_b }}
-                                </h4>
-                                <a href="{% url 'game_detail' game.pk %}">{{ game.date }}</a>
+                            <div style=margin:10px;>
+                                <b>{{ game.team_a.name }}-{{ game.team_b.name }}</b>({{ game.score_a }}:{{ game.score_b }})
+                            </div>
+                            <a href="{% url 'game_detail' game.pk %}">{{ game.date }}</a>
                         </div>
                         {% endfor %}
                     </div>

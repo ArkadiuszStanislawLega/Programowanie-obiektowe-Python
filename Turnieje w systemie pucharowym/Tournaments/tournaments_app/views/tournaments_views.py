@@ -29,20 +29,20 @@ class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Tournament
     login_url = 'tournament_add'
     fields = ['name', 'start_date', 'end_date',
-              'max_number_of_players', 'registerd_teams', 'registerd_games']
+              'max_number_of_players', 'registered_teams']
 
     def form_valid(self, form):
         form.instance.username = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('tournament-home')
+        return reverse('tournaments-home')
 
 
 class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date',
-              'max_number_of_players']
+              'max_number_of_players', 'registered_teams']
     login_url = 'tournament_update'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('tournament_detail')
