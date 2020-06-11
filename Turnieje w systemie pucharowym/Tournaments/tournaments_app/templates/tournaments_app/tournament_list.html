@@ -1,11 +1,15 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'tournament_add' %}">Dodaj nowy turniej</a>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'tournament_add' %}">Dodaj nowy turniej</a>
+        </li>
+    </ol>
     <div>
         {% if Tournaments  %}
         <fieldset>
-            <legend>Wszsytkie turnieje></legend>
+            <h1 class="mt-4 mb-3">Wszsytkie turnieje</h1>
             <ol>
                 {% for tournament in Tournaments %}
                 <li><a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a> </li>

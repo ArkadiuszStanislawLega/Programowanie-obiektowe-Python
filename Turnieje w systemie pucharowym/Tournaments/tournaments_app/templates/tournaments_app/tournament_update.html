@@ -6,7 +6,7 @@
         <div>
             {{ form|crispy }}
         </div>
-        <button type="submit">Zatwierdź zmiany</button>
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">Zatwierdź</button>
         <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </div>
 {% endblock content %}
