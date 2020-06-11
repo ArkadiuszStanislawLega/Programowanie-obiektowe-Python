@@ -3,56 +3,69 @@
 {% block content %}
 <article>
     {% if object %}
-    <a href="{% url 'tournament_update' object.id %}">Edytuj</a>
-    <a href="{% url 'tournament_delete' object.id %}">Usuń</a>
+
     <div>
-        <h1>Turniej> {{ object.name }}</h1>
-        <fieldset>
-            <legend>Drużyny></legend>
-            {% for team in object.get_all_teams %}
-            <div>
-                <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
-            </div>
-            {% endfor %}
-        </fieldset>
+        <h1 class="mt-4 mb-3">Turniej <small>{{ object.name }}</small></h1>
+        <a class="btn btn-primary" href="{% url 'tournament_update' object.id %}">Edytuj</a>
+        <a class="btn btn-primary" href="{% url 'tournament_delete' object.id %}">Usuń</a>
 
-        <fieldset>
-            <h1 class="card-header">Rundy</h1>
-
-            {% for round in object.get_all_rounds %}
-            <div class="container">
-                <h1><a href="{% url 'round_detail' round.pk %}">{{ round.name }}</a></h1>
+        <!-- Region rund w turnieju -->
+        <div class="card my-4">
+            <h5 class="card-header">Drużyny</h5>
+            <div class="card-body">
                 <div class="row">
-
-
-                    {% for group in round.get_all_groups %}
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <h3 class="card-header">Grupa {{ group.name }}</h3>
-                            <div class="card-body">
-                                <h4> {{ group.team_a.name }}-{{ group.team_b.name }}</h4>
-                                <div class="font-italic">ilość rozegranych meczy: {{group.get_all_games.count}}
-                                </div>
-                            </div>
-                            <ul class="list-group list-group-flush"></ul>
-                            {% for game in group.get_all_games %}
-                            <li class="list-group-item">
-                                <div class="font-italic">{{ game.date }}</div>
-                                <a href="{% url 'game_detail' game.pk %}" class="btn btn-primary">
-                                    ({{ game.score_a }}:{{ game.score_b }})</a>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            {% for team in object.get_all_teams %}
+                            <li>
+                                <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
                             </li>
                             {% endfor %}
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
-                    {% endfor %}
-
                 </div>
             </div>
-            {% endfor %}
+        </div>
 
-        </fieldset>
-        {% endif %}
+        <!-- Region rund w turnieju -->
+        <div class="card my-4">
+            <h1 class="card-header">Rundy</h1>
+            <div class="card-body">
+                {% for round in object.get_all_rounds %}
+                <div class="card my-4">
+                    <h3 class="card-header"><a href="{% url 'round_detail' round.pk %}">{{ round.name }}</a></h3>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for group in round.get_all_groups %}
+                            <div class="col-md-4">
+                                <div class="card h-100">
+                                    <h3 class="card-header">Grupa {{ group.name }}</h3>
+                                    <div class="card-body">
+                                        <h4> {{ group.team_a.name }}-{{ group.team_b.name }}</h4>
+                                        <div class="font-italic">ilość rozegranych meczy:
+                                            {{group.get_all_games.count}}
+                                        </div>
+                                    </div>
+                                    <ul class="list-group list-group-flush"></ul>
+                                    {% for game in group.get_all_games %}
+                                    <li class="list-group-item">
+                                        <div class="font-italic">{{ game.date }}</div>
+                                        <a href="{% url 'game_detail' game.pk %}" class="btn btn-primary">
+                                            ({{ game.score_a }}:{{ game.score_b }})</a>
+                                    </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
     </div>
+
 </article>
 {% endblock content %}
