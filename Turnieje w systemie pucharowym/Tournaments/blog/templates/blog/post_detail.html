@@ -7,8 +7,8 @@
             <small>{{ object.date_posted|date:"E d, Y" }}</small>
             {% if object.autor == user%}
             <div>
-                <a href="{% url 'post-update' object.id %}">Update</a>
-                <a href="{% url 'post-delete' object.id %}">Delete</a>
+                <a href="{% url 'post-update' object.id %}" class="btn btn-primary">Edytuj &rarr;</a>
+                <a href="{% url 'post-delete' object.id %}" class="btn btn-primary">Usuń &rarr;</a>
             </div>
             {% endif %}
         </div>
