@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'tournaments_app.apps.TournamentsAppConfig'
+    'tournaments_app.apps.TournamentsAppConfig',
+    'user.apps.UserConfig'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
