@@ -9,7 +9,7 @@ from user import views as user_viewes
 urlpatterns = [
     path('register/', user_viewes.register, name='register'),
     path('profile/', user_viewes.profile, name='profile'),
-    path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
+    path('login/', user_viewes.login_view, name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='user/logout.html'), name='logout'),
 
     path('password-reset/',
