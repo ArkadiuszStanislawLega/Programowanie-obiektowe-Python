@@ -64,7 +64,12 @@
                     <li class="nav-item active dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
+                            {% if user.is_authenticated %}
+                            {{ user.username }}
+                            {% else %}
                             Konto
+                            {% endif %}
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             {% if user.is_authenticated %}

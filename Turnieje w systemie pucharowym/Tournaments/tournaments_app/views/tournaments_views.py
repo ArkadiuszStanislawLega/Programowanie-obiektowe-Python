@@ -6,7 +6,7 @@ from django.views.generic import DeleteView
 from django.utils import timezone
 from django.urls import reverse_lazy, reverse
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.shortcuts import render, get_object_or_404
 
 from tournaments_app.models import Tournament
@@ -25,7 +25,7 @@ class DetailTournamentView(LoginRequiredMixin, DetailView):
     model = Tournament
 
 
-class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class CreateTournamentView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Tournament
     login_url = 'tournament_add'
     fields = ['name', 'start_date', 'end_date',
@@ -39,7 +39,7 @@ class CreateTournamentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return reverse('tournaments-home')
 
 
-class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date',
               'max_number_of_players', 'registered_teams']
@@ -58,6 +58,10 @@ class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class DeleteTournamentView(LoginRequiredMixin, DeleteView):
     model = Tournament
     login_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.instance.username = self.request.user
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('tournaments-home')
