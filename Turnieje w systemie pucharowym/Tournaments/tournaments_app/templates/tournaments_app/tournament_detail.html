@@ -13,17 +13,10 @@
         <div class="card my-4">
             <h5 class="card-header">Drużyny</h5>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled mb-0">
-                            {% for team in object.get_all_teams %}
-                            <li>
-                                <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
+                {% for team in object.get_all_teams %}
+                <a style="margin: 3px;" class="btn btn-primary"
+                    href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
+                {% endfor %}
             </div>
         </div>
 
