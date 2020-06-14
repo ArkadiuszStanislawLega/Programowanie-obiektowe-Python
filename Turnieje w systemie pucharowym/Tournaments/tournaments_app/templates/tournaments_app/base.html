@@ -39,12 +39,13 @@
                             Turnieje
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                            <a class="dropdown-item" href="{% url 'team-home' %}">Drużyny</a>
-                            <a class="dropdown-item" href="{% url 'player-home' %}">Gracze</a>
+                            <a class="dropdown-item" href="{% url 'tournaments-home' %}">Turnieje</a>
+                            <a class="dropdown-item" href="{% url 'round-home' %}">Rundy</a>
                             <a class="dropdown-item" href="{% url 'group-home' %}">Grupy</a>
                             <a class="dropdown-item" href="{% url 'game-home' %}">Mecze</a>
-                            <a class="dropdown-item" href="{% url 'round-home' %}">Rundy</a>
-                            <a class="dropdown-item" href="{% url 'tournaments-home' %}">Turnieje</a>
+                            <hr>
+                            <a class="dropdown-item" href="{% url 'team-home' %}">Drużyny</a>
+                            <a class="dropdown-item" href="{% url 'player-home' %}">Gracze</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -93,9 +94,9 @@
 
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="footer">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Arkadiusz Łęga 2019</p>
+            <p class="m-0 text-center text-dark">Copyright &copy; Arkadiusz Łęga 2019</p>
         </div>
         <!-- /.container -->
     </footer>

@@ -31,4 +31,4 @@ class Game(models.Model):
             return self.team_b
 
     def __str__(self):
-        return f'{self.id} {self.team_a.name} - {self.team_b.name} wynik: {self.score_a} : {self.score_b}'
+        return f'{self.id} {self.group.round.tournament.name} {self.group.round.name} {self.group.name} {self.date} {self.team_a.name} - {self.team_b.name} '

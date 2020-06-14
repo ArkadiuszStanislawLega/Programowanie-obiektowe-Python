@@ -20,11 +20,13 @@
     <a class="btn btn-primary" href="{% url 'game_update' object.id %}">Edytuj</a>
     <a class="btn btn-primary" href="{% url 'game_delete' object.id %}">Usuń</a>
     <div class="card my-4">
-        <div>
-            <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a }}</a> vs <a
-                href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b }}</a>
+        <div class="card-body">
+            <ul>
+                <ol><a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a.name }}</a> vs <a
+                        href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b.name }}</a></ol>
+                <ol>Wynik: ({{ object.score_a }}:{{ object.score_b }})</ol>
+            </ul>
         </div>
-        <div>Wynik: {{ object.score_a }}:{{ object.score_b }}</div>
     </div>
     {% endif %}
     <a href="{{request.META.HTTP_REFERER}}">Powrót</a>

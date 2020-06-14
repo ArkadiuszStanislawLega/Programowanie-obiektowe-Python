@@ -17,4 +17,4 @@ class Round(models.Model):
         return reverse('postion_detail', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f'{self.id} {self.name} {self.number_of_players} - {self.tournament.name}'
+        return f'{self.id}-{self.tournament.name}-{self.name}'

@@ -5,7 +5,7 @@
     {% if object %}
 
     <div>
-        <h1 class="mt-4 mb-3">Turniej <small>{{ object.name }}</small></h1>
+        <h1 class="mt-4 mb-3"><small>Turniej</small> {{ object.name }}</h1>
         <a class="btn btn-primary" href="{% url 'tournament_update' object.id %}">Edytuj</a>
         <a class="btn btn-primary" href="{% url 'tournament_delete' object.id %}">Usuń</a>
 
@@ -26,13 +26,15 @@
             <div class="card-body">
                 {% for round in object.get_all_rounds %}
                 <div class="card my-4">
-                    <h3 class="card-header"><a href="{% url 'round_detail' round.pk %}">Runda {{ round.name }}</a></h3>
+                    <h2 class="card-header"><a href="{% url 'round_detail' round.pk %}"><small>Runda</small>
+                            {{ round.name }}</a></h2>
                     <div class="card-body">
                         <div class="row">
                             {% for group in round.get_all_groups %}
                             <div class="col-md-4">
                                 <div class="card h-100">
-                                    <h3 class="card-header"><a href="{% url 'group_detail' group.pk %}">Grupa
+                                    <h3 class="card-header"><a
+                                            href="{% url 'group_detail' group.pk %}"><small>Grupa</small>
                                             {{ group.name }}</a></h3>
                                     <div class="card-body">
                                         <h4> {{ group.team_a.name }}-{{ group.team_b.name }}</h4>

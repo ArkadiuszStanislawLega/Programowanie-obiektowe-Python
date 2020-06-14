@@ -39,7 +39,7 @@ class CreateTournamentView(LoginRequiredMixin, CreateView):
         return reverse('tournaments-home')
 
 
-class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, UpdateView):
+class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date',
               'max_number_of_players', 'registered_teams']

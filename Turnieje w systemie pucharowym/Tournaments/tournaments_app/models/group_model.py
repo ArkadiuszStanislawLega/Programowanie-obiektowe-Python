@@ -31,4 +31,4 @@ class Group(models.Model):
         return reverse('postion_detail', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f'{self.id} {self.name} - {self.team_a.name} vs {self.team_b.name}'
+        return f'{self.id}-{self.round.tournament.name}-{self.name}-{self.team_a.name}-{self.team_b.name} '
