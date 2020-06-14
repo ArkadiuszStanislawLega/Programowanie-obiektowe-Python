@@ -2,25 +2,27 @@
 {% block content %}
 <article>
     {% if object %}
-    <a href="{% url 'round_update' object.id %}">Edytuj</a>
-    <a href="{% url 'round_delete' object.id %}">Usuń</a>
     <div>
-        <h2>Nazwa rundy> {{ object.name }}</h2>
-        <p>Nazwa turnieju> <a href="{% url 'tournament_detail' object.tournament.pk %}">{{ object.tournament.name }}</a>
-        </p>
-        <p>Ilość graczy> {{ object.number_of_players }}</a></p>
-
+        <h2 class="mt-4 mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'tournament_detail' object.tournament.pk %}">{{ object.tournament.name }}</a>
+                </li>
+                <li class="breadcrumb-item active">Runda: {{ object.name }}</li>
+            </ol>
+            <a class="btn btn-primary" href="{% url 'round_update' object.id %}">Edytuj</a>
+            <a class="btn btn-primary" href="{% url 'round_delete' object.id %}">Usuń</a>
+        </h2>
+        <p>Ilość graczy {{ object.number_of_players }}</a></p>
         {% if object.get_all_groups  %}
-        <fieldset>
-            <legend>Wszystkie grupy></legend>
-            {% for group in object.get_all_groups %}
-
-            <div class="alert alert-{{ message.tags }}">
-                <a href="{% url 'group_detail' group.id %}">{{ group.name }} </a>
-            </div>
-
-            {% endfor %}
-        </fieldset>
+        <h3>Wszystkie grupy</H3>
+        <div class="card my-4">
+            <ol>
+                {% for group in object.get_all_groups %}
+                <li> <a href="{% url 'group_detail' group.id %}">{{ group.name }} </a></li>
+                {% endfor %}
+            </ol>
+        </div>
         {% endif %}
     </div>
     {% endif %}
