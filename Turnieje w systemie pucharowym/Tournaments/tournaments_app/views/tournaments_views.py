@@ -25,7 +25,7 @@ class DetailTournamentView(LoginRequiredMixin, DetailView):
     model = Tournament
 
 
-class CreateTournamentView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class CreateTournamentView(LoginRequiredMixin, CreateView):
     model = Tournament
     login_url = 'tournament_add'
     fields = ['name', 'start_date', 'end_date',

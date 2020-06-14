@@ -1,22 +1,17 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'tournament_add' %}">Dodaj nowy turniej</a>
-        </li>
-    </ol>
-    <div>
-        {% if Tournaments  %}
-        <fieldset>
-            <h1 class="mt-4 mb-3">Wszsytkie turnieje</h1>
-            <ol>
-                {% for tournament in Tournaments %}
-                <li><a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a> </li>
-                {% endfor %}
-            </ol>
-        </fieldset>
-        {% endif %}
+    {% if Tournaments  %}
+    <h1 class="mt-4 mb-3">Wszystkie turnieje
+        <a class="btn btn-primary" href="{% url 'tournament_add' %}">Dodaj nowyturniej</a>
+    </h1>
+    <div class="card my-4">
+        <ol>
+            {% for tournament in Tournaments %}
+            <li><a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }} </a> </li>
+            {% endfor %}
+        </ol>
     </div>
+    {% endif %}
 </article>
 {% endblock content %}
