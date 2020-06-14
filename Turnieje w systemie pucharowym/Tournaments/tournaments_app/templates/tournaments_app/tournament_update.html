@@ -6,7 +6,6 @@
         <div>
             {{ form|crispy }}
         </div>
-        <button type="submit" class="btn btn-primary" id="sendMessageButton">Zatwierdź</button>
-        <a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        {% include "tournaments_app/footer.html" %}
 </div>
 {% endblock content %}

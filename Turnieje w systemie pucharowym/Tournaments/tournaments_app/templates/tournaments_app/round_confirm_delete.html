@@ -8,9 +8,6 @@
             Czy na pewno chcesz usunąć rundę> {{ object.name }}
             W turnieju> {{ object.tournament.name }}
         </fieldset>
-        <div>
-            <button type="submit">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-        </div>
+        {% include "tournaments_app/footer.html" %}
 </div>
 {% endblock content %}

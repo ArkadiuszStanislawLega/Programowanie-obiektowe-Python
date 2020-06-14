@@ -8,10 +8,7 @@
             <legend>Gracz></legend>
             {{ form|crispy }}
         </fieldset>
-        <div>
-            <button class="btn btn-primary" id="sendMessageButton" type="submit">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-        </div>
+        {% include "tournaments_app/footer.html" %}
     </form>
 </div>
 {% endblock content %}

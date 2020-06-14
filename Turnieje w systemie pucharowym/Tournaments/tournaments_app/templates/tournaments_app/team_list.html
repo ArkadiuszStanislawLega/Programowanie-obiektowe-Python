@@ -1,17 +1,17 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'team_add' %}">Dodaj nową drużynę</a>
     <div>
         {% if Teams  %}
-        <fieldset>
-            <legend>Wszsytkie drużyny></legend>
-            <ol>
-                {% for team in Teams %}
-                <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
-                {% endfor %}
-            </ol>
-        </fieldset>
+        <h1 class="mt-4 mb-3">Wszsytkie drużyny
+            <a class="btn btn-primary" href="{% url 'team_add' %}">Nowa drużyna</a>
+        </h1>
+        <ol>
+            {% for team in Teams %}
+            <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
+            {% endfor %}
+        </ol>
+
         {% endif %}
     </div>
 </article>

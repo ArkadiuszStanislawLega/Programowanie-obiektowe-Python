@@ -8,10 +8,7 @@
             <h2 class="mt-4 mb-3">Turniej</h2>
             {{ form|crispy }}
         </fieldset>
-        <div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-        </div>
+        {% include "tournaments_app/footer.html" %}
     </form>
 </div>
 {% endblock content %}

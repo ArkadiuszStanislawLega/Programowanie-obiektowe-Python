@@ -13,9 +13,7 @@
                 Z wynikiem {{ object.score_a }}:{{ object.score_b }}
             </div>
         </div>
-
-        <button class="btn btn-primary" id="sendMessageButton" type="submit">Zatwierdź</button>
-        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        {% include "tournaments_app/footer.html" %}
         </from>
 </div>
 {% endblock content %}

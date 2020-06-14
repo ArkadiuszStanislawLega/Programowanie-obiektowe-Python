@@ -12,9 +12,6 @@
                 Pomiędzy {{ object.team_a.name }} vs {{ object.team_b.name }}
             </div>
         </fieldset>
-        <div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-        </div>
+        {% include "tournaments_app/footer.html" %}
 </div>
 {% endblock content %}

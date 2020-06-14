@@ -8,10 +8,8 @@
             <legend>Drużyna></legend>
             {{ form|crispy }}
         </fieldset>
-        <div>
-            <button type="submit">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-        </div>
+        {% extends "tournaments_app/base.html" %}
+
     </form>
 </div>
 {% endblock content %}

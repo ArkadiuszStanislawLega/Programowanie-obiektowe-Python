@@ -8,11 +8,7 @@
                 <legend>Dodaj nową drużynę</legend>
                 {{ form|crispy }}
             </fieldset>
-
-            <div>
-                <button type="submit">Dodaj</button>
-                <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
-            </div>
+            {% include "tournaments_app/footer.html" %}
     </div>
 </article>
 {% endblock content %}
