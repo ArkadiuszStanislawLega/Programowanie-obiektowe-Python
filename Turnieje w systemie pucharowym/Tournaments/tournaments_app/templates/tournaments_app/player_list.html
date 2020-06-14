@@ -1,18 +1,26 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'player_add' %}">Dodaj nowego gracza</a>
     <div>
         {% if Players  %}
-        <fieldset>
-            <legend>Wszscy gracze></legend>
-            <ol>
+        <h2 class="mt-4 mb-3">Wszscy gracze <a class="btn btn-primary" href="{% url 'player_add' %}">Nowy gracz</a></h2>
+        <div class="card my-4">
+            <table style="width:100%">
+                <tr>
+                    <th>Nazwisko i Imię</th>
+                    <th>Drużyna</th>
+                </tr>
                 {% for player in Players %}
-                <li> <a href="{% url 'player_detail' player.id %}">{{ player.name }} {{ player.surname }}</a></li>
+                <tr>
+                    <td><a href="{% url 'player_detail' player.id %}">{{ player.surname }} {{ player.name }} </a></td>
+                    <td><a href="{% url 'tournament_detail' player.team.id %}">{{ player.team }}</a>
+                    </td>
+                </tr>
                 {% endfor %}
-            </ol>
-        </fieldset>
+            </table>
+        </div>
         {% endif %}
     </div>
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

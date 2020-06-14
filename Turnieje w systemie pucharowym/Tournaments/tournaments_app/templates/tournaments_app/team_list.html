@@ -3,15 +3,16 @@
 <article>
     <div>
         {% if Teams  %}
-        <h1 class="mt-4 mb-3">Wszsytkie drużyny
+        <h2 class="mt-4 mb-3">Wszystkie drużyny
             <a class="btn btn-primary" href="{% url 'team_add' %}">Nowa drużyna</a>
-        </h1>
-        <ol>
-            {% for team in Teams %}
-            <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
-            {% endfor %}
-        </ol>
-
+        </h2>
+        <div class="card my-4">
+            <ol>
+                {% for team in Teams %}
+                <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
         {% endif %}
     </div>
 </article>

@@ -2,9 +2,9 @@
 {% block content %}
 <article>
     {% if Tournaments  %}
-    <h1 class="mt-4 mb-3">Wszystkie turnieje
+    <h2 class="mt-4 mb-3">Wszystkie turnieje
         <a class="btn btn-primary" href="{% url 'tournament_add' %}">Nowy turniej</a>
-    </h1>
+    </h2>
     <div class="card my-4">
         <ol>
             {% for tournament in Tournaments %}
