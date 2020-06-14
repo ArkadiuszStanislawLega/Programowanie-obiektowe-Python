@@ -10,7 +10,11 @@
 
         <div class="card my-4">
             <div class="card-body">
-                Przynależy do drużyny <a href="{% url 'team_detail' object.team.pk %}">{{ object.team.name }}</a>
+                <ul>
+                    <ol> Data urodzenia {{ object.date_of_birth }}</ol>
+                    <ol> Przynależy do drużyny <a
+                            href="{% url 'team_detail' object.team.pk %}">{{ object.team.name }}</a></ol>
+                </ul>
             </div>
         </div>
     </div>

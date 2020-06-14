@@ -26,7 +26,7 @@ class DetailPlayerView(LoginRequiredMixin, DetailView):
 class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Player
     login_url = 'player_add'
-    fields = ['name', 'surname', 'team']
+    fields = ['name', 'surname', 'date_of_birth', 'team']
 
     def form_valid(self, form):
         form.instance.username = self.request.user
@@ -38,7 +38,7 @@ class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdatePlayerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Player
-    fields = ['name', 'surname', 'team']
+    fields = ['name', 'surname', 'date_of_birth', 'team']
     login_url = 'player_update'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('player_detail')
