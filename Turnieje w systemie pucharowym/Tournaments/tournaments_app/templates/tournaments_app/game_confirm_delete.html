@@ -3,15 +3,19 @@
 <div>
     <form method="POST">
         {% csrf_token %}
-        <fieldset>
-            <legend>Potwierdź usunięcie></legend>
-            Czy na pewno chcesz usunąć mecz z dnia> {{ object.date }}
-            Pomiędzy> {{ object.team_a }} vs {{ object.team_b }}
-            Z wynikiem> {{ object.score_a }}:{{ object.score_b }}
-        </fieldset>
-        <div>
-            <button type="submit">Zatwierdź</button>
-            <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        <h2 class="mt-4 mb-3">Potwierdź usunięcie</h2>
+        <div class="card my-4">
+            <div>
+                Czy na pewno chcesz usunąć mecz z dnia {{ object.date }}
+                <div>
+                    Pomiędzy {{ object.team_a }} vs {{ object.team_b }}
+                </div>
+                Z wynikiem {{ object.score_a }}:{{ object.score_b }}
+            </div>
         </div>
+
+        <button class="btn btn-primary" id="sendMessageButton" type="submit">Zatwierdź</button>
+        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        </from>
 </div>
 {% endblock content %}

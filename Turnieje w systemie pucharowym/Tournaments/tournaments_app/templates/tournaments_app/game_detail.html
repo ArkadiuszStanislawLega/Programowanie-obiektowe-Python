@@ -2,16 +2,31 @@
 {% block content %}
 <article>
     {% if object %}
-    <a href="{% url 'game_update' object.id %}">Edytuj</a>
-    <a href="{% url 'game_delete' object.id %}">Usuń</a>
-    <div>
-        <h2>Data> {{ object.date }}</h2>
-        <p>Grupa> <a href="{% url 'group_detail' object.group.pk %}">{{ object.group.name }}</a></p>
-        <p>Drużyna> <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a }}</a> vs <a
-                href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b }}</a></p>
-        <p>Wynik> {{ object.score_a }}:{{ object.score_b }}</p>
-        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+    <h2 class="mt-4 mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a
+                    href="{% url 'tournament_detail' object.group.round.tournament.pk %}">{{ object.group.round.tournament.name }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'round_detail' object.group.round.pk %}">Runda: {{ object.group.round.name }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'group_detail' object.group.pk %}">Grupa: {{ object.group.name }}</a>
+            </li>
+            <li class="breadcrumb-item active">{{ object.date }}</li>
+        </ol>
+        <a class="btn btn-primary" href="{% url 'game_update' object.id %}">Edytuj</a>
+        <a class="btn btn-primary" href="{% url 'game_delete' object.id %}">Usuń</a>
+    </h2>
+    <div class="card my-4">
+        <div>
+            <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a }}</a> vs <a
+                href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b }}</a>
+        </div>
+        <div>Wynik: {{ object.score_a }}:{{ object.score_b }}</div>
     </div>
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
     {% endif %}
 </article>
 {% endblock content %}

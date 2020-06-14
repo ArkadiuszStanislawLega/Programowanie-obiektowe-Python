@@ -1,19 +1,29 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'game_add' %}">Dodaj nowy mecz</a>
     <div>
         {% if Games  %}
-        <fieldset>
-            <legend>Wszystkie mecze></legend>
-            <ol>
-                {% for game in Games %}
-                <li><a href="{% url 'game_detail' game.pk %}">{{ game.group.round.tournament.name }}-{{ game.group.round.name }}-{{ game.group.name }}
-                        {{ game.team_a.name }}-{{ game.team_b.name }}
-                        ({{ game.score_a }}:{{ game.score_b }})</a></li>
-                {% endfor %}
-            </ol>
-        </fieldset>
+        <h2 class="mt-4 mb-3">Wszystkie mecze <a class="btn btn-primary" href="{% url 'game_add' %}">Nowy mecz</a></h2>
+        <table style="width:100%">
+            <tr>
+                <th>Mecz</th>
+                <th>Grupa</th>
+                <th>Runda</th>
+                <th>Turniej</th>
+            </tr>
+            {% for game in Games %}
+            <tr>
+                <td><a href="{% url 'game_detail' game.id %}">{{ game.team_a.name }} - {{ game.team_b.name }}
+                        ({{ game.score_a }}: {{ game.score_b }})</a></td>
+                <td><a href="{% url 'group_detail' game.group.id %}">{{ game.group.name }}</a></td>
+                <td><a href="{% url 'round_detail' game.group.round.id %}">{{ game.group.round.name }}</a></td>
+                <td><a
+                        href="{% url 'tournament_detail' game.group.round.tournament.id %}">{{ game.group.round.tournament.name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
         {% endif %}
     </div>
 </article>
