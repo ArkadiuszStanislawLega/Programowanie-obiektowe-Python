@@ -10,9 +10,9 @@
                 </li>
                 <li class="breadcrumb-item active">Runda: {{ object.name }}</li>
             </ol>
-            <a class="btn btn-primary" href="{% url 'round_update' object.id %}">Edytuj</a>
-            <a class="btn btn-primary" href="{% url 'round_delete' object.id %}">Usuń</a>
         </h2>
+        <a class="btn btn-primary" href="{% url 'round_update' object.id %}">Edytuj</a>
+        <a class="btn btn-primary" href="{% url 'round_delete' object.id %}">Usuń</a>
         <p>Ilość graczy {{ object.number_of_players }}</a></p>
         {% if object.get_all_groups  %}
         <h3>Wszystkie grupy</H3>

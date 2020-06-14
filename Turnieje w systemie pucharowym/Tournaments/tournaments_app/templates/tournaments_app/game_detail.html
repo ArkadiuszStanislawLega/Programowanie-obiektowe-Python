@@ -16,9 +16,9 @@
             </li>
             <li class="breadcrumb-item active">{{ object.date }}</li>
         </ol>
-        <a class="btn btn-primary" href="{% url 'game_update' object.id %}">Edytuj</a>
-        <a class="btn btn-primary" href="{% url 'game_delete' object.id %}">Usuń</a>
     </h2>
+    <a class="btn btn-primary" href="{% url 'game_update' object.id %}">Edytuj</a>
+    <a class="btn btn-primary" href="{% url 'game_delete' object.id %}">Usuń</a>
     <div class="card my-4">
         <div>
             <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a }}</a> vs <a

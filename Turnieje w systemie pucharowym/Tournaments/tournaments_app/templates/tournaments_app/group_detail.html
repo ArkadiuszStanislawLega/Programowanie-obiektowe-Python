@@ -2,24 +2,28 @@
 {% block content %}
 <article>
     {% if object %}
-    <a href="{% url 'group_update' object.id %}">Edytuj</a>
-    <a href="{% url 'group_delete' object.id %}">Usuń</a>
-    <div>
-        <h2>Nazwa grupy> {{ object.name }}</h2>
-        <p>Runda> <a href="{% url 'round_detail' object.round.pk %}">{{ object.round.name }}</a></p>
-        <p>Turniej> <a
-                href="{% url 'tournament_detail' object.round.tournament.pk %}">{{ object.round.tournament.name }}</a>
-        </p>
-        <p>Drużyny> <a href="{% url 'team_detail' object.team_a.pk %}">{{ object.team_a.name }}</a> vs <a
-                href="{% url 'team_detail' object.team_b.pk %}">{{ object.team_b.name }}</a></p>
-
+    <h2 class="mt-4 mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a
+                    href="{% url 'tournament_detail' object.round.tournament.pk %}">{{ object.round.tournament.name }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'round_detail' object.round.pk %}">Runda: {{ object.round.name }}</a>
+            </li>
+            <li class="breadcrumb-item active">Grupa: {{ object.name }}</li>
+        </ol>
+    </h2>
+    <a class="btn btn-primary" href="{% url 'group_update' object.id %}">Edytuj</a>
+    <a class="btn btn-primary" href="{% url 'group_delete' object.id %}">Usuń</a>
+    <h2 class="mt-4 mb-3">Wszystkie mecze rozgrane w grupie</h2>
+    <div class="card my-4">
         {% if object.get_all_games  %}
         <fieldset>
-            <legend>Wszystkie mecze rozgrane w grupie></legend>
             <ol>
                 {% for game in object.get_all_games %}
 
-                <li> <a href="{% url 'game_detail' game.pk %}">{{ game.team_a }}-{{ game.team_b }}
+                <li> <a href="{% url 'game_detail' game.pk %}">{{ game.team_a.name }}-{{ game.team_b.name }}
                         ({{ game.score_a }}:{{ game.score_b }}) </a></li>
 
                 {% endfor %}
@@ -27,7 +31,7 @@
         </fieldset>
         {% endif %}
     </div>
-    {% endif %}
     <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+    {% endif %}
 </article>
-{% endblock content %}
+{% endblock %}

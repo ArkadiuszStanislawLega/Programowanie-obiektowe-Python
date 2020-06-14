@@ -1,20 +1,25 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <a href="{% url 'group_add' %}">Dodaj nową grupę</a>
     <div>
         {% if Groups  %}
-        <fieldset>
-            <h2 class="mt-4 mb-3">Wszystkie grupy></h2>
-            <ol>
-                {% for group in Groups %}
-                <li><a
-                        href="{% url 'group_detail' group.id %}">{{ group.round.tournament.name }}-{{ group.round.name }}-{{ group.name }}</a>
-                </li>
-                {% endfor %}
-            </ol>
-        </fieldset>
+        <h2 class="mt-4 mb-3">Wszystkie grupy <a class="btn btn-primary" href="{% url 'game_add' %}">Nowa grupa</a></h2>
+        <table style="width:100%">
+            <tr>
+                <th>Grupa</th>
+                <th>Runda</th>
+                <th>Turniej</th>
+            </tr>
+            {% for group in Groups %}
+            <tr>
+                <td><a href="{% url 'group_detail' group.id %}">{{ group.name }}</a></td>
+                <td><a href="{% url 'round_detail' group.round.id %}">{{ group.round.name }}</a></td>
+                <td><a
+                        href="{% url 'tournament_detail' group.round.tournament.id %}">{{ group.round.tournament.name }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
         {% endif %}
-    </div>
 </article>
 {% endblock content %}
