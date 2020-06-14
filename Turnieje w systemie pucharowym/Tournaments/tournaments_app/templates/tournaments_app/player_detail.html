@@ -2,13 +2,19 @@
 {% block content %}
 <article>
     {% if object %}
-    <a href="{% url 'player_update' object.id %}">Edytuj</a>
-    <a href="{% url 'player_delete' object.id %}">Usuń</a>
     <div>
-        <h2>Gracz> {{ object.name }} {{ object.surname }}</h2>
-        <p>Drużyna> <a href="{% url 'team_detail' object.team.pk %}">{{ object.team }}</a></p>
-        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        <h1 class="mt-4 mb-3"><small>Gracz</small> {{ object.name }} {{ object.surname }}
+            <a class="btn btn-primary" href="{% url 'player_update' object.id %}">Edytuj</a>
+            <a class="btn btn-primary" href="{% url 'player_delete' object.id %}">Usuń</a>
+        </h1>
+
+        <div class="card my-4">
+            <div class="card-body">
+                Przynależy do drużyny <a href="{% url 'team_detail' object.team.pk %}">{{ object.team.name }}</a>
+            </div>
+        </div>
     </div>
     {% endif %}
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

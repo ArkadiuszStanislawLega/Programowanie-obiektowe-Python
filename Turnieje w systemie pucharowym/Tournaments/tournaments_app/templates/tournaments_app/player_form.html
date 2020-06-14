@@ -5,7 +5,7 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset>
-            <legend>Gracz></legend>
+            <h2 class="mt-4 mb-3">Gracz></h2>
             {{ form|crispy }}
         </fieldset>
         {% include "tournaments_app/footer.html" %}

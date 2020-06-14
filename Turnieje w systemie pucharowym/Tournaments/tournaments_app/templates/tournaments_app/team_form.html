@@ -5,11 +5,10 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset>
-            <legend>Drużyna></legend>
+            <h2 class="mt-4 mb-3">Drużyna</h2>
             {{ form|crispy }}
         </fieldset>
         {% extends "tournaments_app/base.html" %}
-
     </form>
 </div>
 {% endblock content %}
