@@ -12,20 +12,20 @@ from django.shortcuts import render, get_object_or_404
 from tournaments_app.models import Game
 
 
-class AllGameView(LoginRequiredMixin, ListView):
+class AllGameView(ListView):
     model = Game
 
     def get_context_data(self, **kwargs):
         return {'Games':  Game.objects.all()}
 
 
-class DetailGameView(LoginRequiredMixin, DetailView):
+class DetailGameView(DetailView):
     model = Game
 
 
 class CreateGameView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Game
-    login_url = 'game_add'
+    login_url = reverse_lazy('login')
     fields = ['date', 'group', 'team_a', 'team_b', 'score_a', 'score_b']
 
     def form_valid(self, form):
@@ -39,7 +39,7 @@ class CreateGameView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class UpdateGameView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Game
     fields = ['date', 'group', 'team_a', 'team_b', 'score_a', 'score_b']
-    login_url = 'game_update'
+    login_url = reverse_lazy('login')
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('game_detail')
 
@@ -53,6 +53,7 @@ class UpdateGameView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class DeleteGameView(LoginRequiredMixin, DeleteView):
     model = Game
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         return reverse('game-home')
