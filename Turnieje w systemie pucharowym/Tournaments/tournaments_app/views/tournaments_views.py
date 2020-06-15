@@ -12,28 +12,22 @@ from django.shortcuts import render, get_object_or_404
 from tournaments_app.models import Tournament
 
 
-class AllTournamentsView(LoginRequiredMixin, ListView):
+class AllTournamentsView(ListView):
     model = Tournament
-    # login_url = reverse_lazy('tournaments-home')
-    # paginate_by = 10
 
     def get_context_data(self, **kwargs):
         return {'Tournaments':  Tournament.objects.all()}
 
 
-class DetailTournamentView(LoginRequiredMixin, DetailView):
+class DetailTournamentView(DetailView):
     model = Tournament
 
 
 class CreateTournamentView(LoginRequiredMixin, CreateView):
     model = Tournament
-    login_url = 'tournament_add'
+    login_url = 'login'
     fields = ['name', 'start_date', 'end_date',
               'max_number_of_players', 'registered_teams']
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('tournaments-home')
@@ -43,13 +37,9 @@ class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Tournament
     fields = ['name', 'start_date', 'end_date',
               'max_number_of_players', 'registered_teams']
-    login_url = 'tournament_update'
+    login_url = 'login'
     success_message = "Entry was created successfully"
     success_url = reverse_lazy('tournament_detail')
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('tournaments-home')
@@ -57,11 +47,7 @@ class UpdateTournamentView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class DeleteTournamentView(LoginRequiredMixin, DeleteView):
     model = Tournament
-    login_url = reverse_lazy('index')
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         return reverse('tournaments-home')
