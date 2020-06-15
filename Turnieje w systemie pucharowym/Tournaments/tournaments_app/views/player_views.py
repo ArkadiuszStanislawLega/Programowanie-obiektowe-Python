@@ -12,25 +12,21 @@ from django.shortcuts import render, get_object_or_404
 from tournaments_app.models import Player
 
 
-class AllPlayerView(LoginRequiredMixin, ListView):
+class AllPlayerView(ListView):
     model = Player
 
     def get_context_data(self, **kwargs):
         return {'Players':  Player.objects.all()}
 
 
-class DetailPlayerView(LoginRequiredMixin, DetailView):
+class DetailPlayerView(DetailView):
     model = Player
 
 
 class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Player
-    login_url = 'player_add'
+    login_url = reverse_lazy('login')
     fields = ['name', 'surname', 'date_of_birth', 'team']
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('player-home')
@@ -39,13 +35,7 @@ class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class UpdatePlayerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Player
     fields = ['name', 'surname', 'date_of_birth', 'team']
-    login_url = 'player_update'
-    success_message = "Entry was created successfully"
-    success_url = reverse_lazy('player_detail')
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         return reverse('player-home')
@@ -53,7 +43,7 @@ class UpdatePlayerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class DeletePlayerView(LoginRequiredMixin, DeleteView):
     model = Player
-    login_url = reverse_lazy('index')
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         return reverse('player-home')
