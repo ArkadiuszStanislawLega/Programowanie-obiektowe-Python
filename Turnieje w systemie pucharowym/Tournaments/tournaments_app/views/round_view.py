@@ -12,25 +12,21 @@ from django.shortcuts import render, get_object_or_404
 from tournaments_app.models import Round
 
 
-class AllRoundView(LoginRequiredMixin, ListView):
+class AllRoundView(ListView):
     model = Round
 
     def get_context_data(self, **kwargs):
         return {'Rounds':  Round.objects.all()}
 
 
-class DetailRoundView(LoginRequiredMixin, DetailView):
+class DetailRoundView(DetailView):
     model = Round
 
 
 class CreateRoundView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Round
-    login_url = 'round_add'
+    login_url = reverse_lazy('login')
     fields = ['name', 'number_of_players', 'tournament']
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('round-home')
@@ -39,13 +35,8 @@ class CreateRoundView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class UpdateRoundView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Round
     fields = ['name', 'number_of_players', 'tournament']
-    login_url = 'round_update'
+    login_url = reverse_lazy('login')
     success_message = "Entry was created successfully"
-    success_url = reverse_lazy('round_detail')
-
-    def form_valid(self, form):
-        form.instance.username = self.request.user
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('round-home')
@@ -53,6 +44,7 @@ class UpdateRoundView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class DeleteRoundView(LoginRequiredMixin, DeleteView):
     model = Round
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         return reverse('round-home')
