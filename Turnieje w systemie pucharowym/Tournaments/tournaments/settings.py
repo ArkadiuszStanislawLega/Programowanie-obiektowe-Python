@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'tournaments_app.apps.TournamentsAppConfig',
     'user.apps.UserConfig'
 ]
+
+AUTH_USER_MODEL = 'user.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
