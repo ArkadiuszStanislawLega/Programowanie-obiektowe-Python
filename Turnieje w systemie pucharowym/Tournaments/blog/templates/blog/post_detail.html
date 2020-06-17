@@ -15,5 +15,6 @@
         <h2>{{ object.title }}</h2>
         <p>{{ object.content }}</p>
     </div>
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

@@ -20,5 +20,6 @@
             Potrzebuje konta?<a class="ml-2" href="{% url 'register'}">Zarejestruj się teraz</a>
         </small>
     </div>
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </div>
 {% endblock content %}
