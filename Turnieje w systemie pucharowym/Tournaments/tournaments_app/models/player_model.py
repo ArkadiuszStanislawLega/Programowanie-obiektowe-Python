@@ -6,7 +6,6 @@ class Player(models.Model):
     id = models.AutoField(db_index=True, primary_key=True)
     name = models.CharField(max_length=20)
     surname = models.CharField(max_length=20)
-    date_of_birth = models.DateField()
     team = models.ForeignKey('tournaments_app.Team',
                              on_delete=models.DO_NOTHING, null=True)
 

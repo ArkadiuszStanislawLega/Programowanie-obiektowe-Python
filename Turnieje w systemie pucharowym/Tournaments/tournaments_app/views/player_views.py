@@ -26,7 +26,7 @@ class DetailPlayerView(DetailView):
 class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Player
     login_url = reverse_lazy('login')
-    fields = ['name', 'surname', 'date_of_birth', 'team']
+    fields = ['name', 'surname', 'team']
 
     def get_success_url(self):
         return reverse('player-home')
@@ -34,7 +34,7 @@ class CreatePlayerView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class UpdatePlayerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Player
-    fields = ['name', 'surname', 'date_of_birth', 'team']
+    fields = ['name', 'surname', 'team']
     login_url = reverse_lazy('login')
 
     def get_success_url(self):

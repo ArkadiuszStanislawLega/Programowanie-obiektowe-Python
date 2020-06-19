@@ -13,7 +13,7 @@
                 {% for player in Players %}
                 <tr>
                     <td><a href="{% url 'player_detail' player.id %}">{{ player.surname }} {{ player.name }} </a></td>
-                    <td><a href="{% url 'tournament_detail' player.team.id %}">{{ player.team }}</a>
+                    <td><a href="{% url 'team_detail' player.team.id %}">{{ player.team.name }}</a>
                     </td>
                 </tr>
                 {% endfor %}

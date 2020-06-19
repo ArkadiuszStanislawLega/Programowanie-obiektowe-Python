@@ -12,8 +12,8 @@
             <div class="card-body">
                 <ul>
                     <ol> Data urodzenia {{ object.date_of_birth }}</ol>
-                    <ol> Przynależy do drużyny <a
-                            href="{% url 'team_detail' object.team.pk %}">{{ object.team.name }}</a></ol>
+                    <ol> Przynależy do drużyny
+                        <a href="{% url 'team_detail' object.team.id %}">{{ object.team.name }}</a></ol>
                 </ul>
             </div>
         </div>
