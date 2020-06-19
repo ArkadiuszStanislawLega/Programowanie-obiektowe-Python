@@ -23,6 +23,9 @@
                 {% endfor %}
             </table>
         </div>
-        {% endif %}
+        {% else %}
+        <h2 class="mt-4 mb-3">Nie ma jeszcze utwożonej grupy w bazie danych.<a class="btn btn-primary"
+                href="{% url 'group_add' %}">Nowa grupa</a>
+            {% endif %}
 </article>
 {% endblock content %}
