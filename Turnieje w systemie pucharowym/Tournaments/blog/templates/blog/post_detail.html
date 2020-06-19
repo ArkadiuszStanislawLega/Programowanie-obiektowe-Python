@@ -3,9 +3,9 @@
 <article>
     <div>
         <div>
-            <a href="{% url 'user-posts' object.autor.username %}">{{ object.autor }}</a>
+            <a href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
             <small>{{ object.date_posted|date:"E d, Y" }}</small>
-            {% if object.autor == user%}
+            {% if object.author == user%}
             <div>
                 <a href="{% url 'post-update' object.id %}" class="btn btn-primary">Edytuj &rarr;</a>
                 <a href="{% url 'post-delete' object.id %}" class="btn btn-primary">Usuń &rarr;</a>
