@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
+import django
 import os
 import sys
+os.environ['DJANGO_SETTINGS_MODULE'] = 'tournaments.settings'
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+django.setup()
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Tournaments.settings')
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Tournaments.settings')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
