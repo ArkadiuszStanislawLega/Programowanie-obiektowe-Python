@@ -23,7 +23,9 @@
             </tr>
             {% endfor %}
         </table>
-
+        {% else %}
+        <h2 class="mt-4 mb-3">Nie ma żadnych meczy w bazie danych.<a class="btn btn-primary"
+                href="{% url 'game_add' %}">Nowy mecz</a></h2>
         {% endif %}
     </div>
 </article>
