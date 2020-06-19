@@ -28,5 +28,6 @@
                 href="{% url 'game_add' %}">Nowy mecz</a></h2>
         {% endif %}
     </div>
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

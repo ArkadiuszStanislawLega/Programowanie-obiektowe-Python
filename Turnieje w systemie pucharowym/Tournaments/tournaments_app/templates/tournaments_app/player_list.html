@@ -19,6 +19,9 @@
                 {% endfor %}
             </table>
         </div>
+        {% else %}
+        <h2 class="mt-4 mb-3">Nie ma jeszcze utworzone gracza w bazie danych.<a class="btn btn-primary"
+                href="{% url 'player_add' %}">Nowy gracz</a></h2>
         {% endif %}
     </div>
     <a href="{{request.META.HTTP_REFERER}}">Powrót</a>

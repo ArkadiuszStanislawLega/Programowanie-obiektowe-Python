@@ -1,19 +1,22 @@
 {% extends "tournaments_app/base.html" %}
 {% block content %}
 <article>
-    <div>
-        {% if Teams  %}
-        <h2 class="mt-4 mb-3">Wszystkie drużyny
-            <a class="btn btn-primary" href="{% url 'team_add' %}">Nowa drużyna</a>
-        </h2>
-        <div class="card my-4">
-            <ol>
-                {% for team in Teams %}
-                <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
-                {% endfor %}
-            </ol>
-        </div>
-        {% endif %}
+    {% if Teams  %}
+    <h2 class="mt-4 mb-3">Wszystkie drużyny
+        <a class="btn btn-primary" href="{% url 'team_add' %}">Nowa drużyna</a>
+    </h2>
+    <div class="card my-4">
+        <ol>
+            {% for team in Teams %}
+            <li><a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></li>
+            {% endfor %}
+        </ol>
     </div>
+    {% else %}
+    <h2 class="mt-4 mb-3">Nie ma jeszcze utworzonej drużyny w bazie danych.<a class="btn btn-primary"
+            href="{% url 'round_add' %}">Nowa drużyna</a>
+    </h2>
+    {% endif %}
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

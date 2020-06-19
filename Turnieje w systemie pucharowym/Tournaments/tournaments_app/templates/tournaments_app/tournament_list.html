@@ -12,6 +12,11 @@
             {% endfor %}
         </ol>
     </div>
+    {% else %}
+    <h2 class="mt-4 mb-3">Nie ma jeszcze utworzonego turnieju w bazie danych.<a class="btn btn-primary"
+            href="{% url 'round_add' %}">Nowy turniej</a>
+    </h2>
     {% endif %}
+    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}
