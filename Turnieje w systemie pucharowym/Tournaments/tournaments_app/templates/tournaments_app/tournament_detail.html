@@ -22,20 +22,52 @@
 
         <!-- Region rund w turnieju -->
         <div class="card my-4">
-            <h1 class="card-header">Rundy</h1>
+            <h2 class="card-header">
+                <div class="row">
+                    <div class="col-lg-10">
+                        Rundy
+                    </div>
+                    <div class="col-lg-1">
+                        <a class="btn btn-primary" href="{% url 'round_add' %}">Dodaj rundę</a>
+                    </div>
+                </div>
+            </h2>
+
             <div class="card-body">
                 {% for round in object.get_all_rounds %}
                 <div class="card my-4">
-                    <h2 class="card-header"><a href="{% url 'round_detail' round.pk %}"><small>Runda</small>
-                            {{ round.name }}</a></h2>
+                    <h2 class="card-header">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <a href="{% url 'round_detail' round.pk %}"> <small>Runda</small> {{ round.name }}
+                                </a>
+                            </div>
+                            <div class="col-lg-1">
+                                <a class="btn btn-primary" href="{% url 'group_add' %}">Dodaj grupe</a>
+                            </div>
+                        </div>
+                    </h2>
+
+
                     <div class="card-body">
                         <div class="row">
                             {% for group in round.get_all_groups %}
                             <div class="col-md-4">
                                 <div class="card h-100">
-                                    <h3 class="card-header"><a
-                                            href="{% url 'group_detail' group.pk %}"><small>Grupa</small>
-                                            {{ group.name }}</a></h3>
+                                    <h3 class="card-header">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <a href="{% url 'group_detail' group.pk %}"> <small>Grupa</small>
+                                                    {{ group.name }} </a>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a class="btn btn-primary" href="{% url 'game_add' %}">Dodaj
+                                                    mecz</a>
+                                            </div>
+                                        </div>
+                                    </h3>
+
+
                                     <div class="card-body">
                                         <h4> {{ group.team_a.name }}-{{ group.team_b.name }}</h4>
                                         <div class="font-italic">ilość rozegranych meczy:
@@ -61,7 +93,6 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-    <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
+        <a href="{{request.META.HTTP_REFERER}}">Powrót</a>
 </article>
 {% endblock content %}

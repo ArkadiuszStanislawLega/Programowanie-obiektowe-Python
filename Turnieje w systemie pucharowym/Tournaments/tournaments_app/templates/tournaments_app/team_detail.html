@@ -11,7 +11,7 @@
         <div class="card my-4">
             <ol>
                 {% for player in object.get_players %}
-                <li><a href="{% url 'player_detail' player.pk %}">{{ player.name }}</a></li>
+                <li><a href="{% url 'player_detail' player.pk %}">{{ player.surname }} {{ player.name }}</a></li>
                 {% endfor %}
             </ol>
             </h3>

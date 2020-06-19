@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 from .player_model import Player
+from .tournament_model import Tournament
 
 
 class Team(models.Model):
